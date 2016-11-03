@@ -7,4 +7,3 @@
 - [前端站点合集](https://github.com/AlanZhang001/webtouch/blob/master/%E5%89%8D%E7%AB%AF%E7%AB%99%E7%82%B9%E5%90%88%E9%9B%86.md)
 - [一些自己觉得不错的文章,有空多读读](https://github.com/AlanZhang001/webtouch/blob/master/%E5%A5%BD%E6%96%87%E7%AB%A0%E9%9B%86%E5%90%88.md)
 - [工作中遇到的坑](%E5%B7%A5%E4%BD%9C%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91%E9%9B%86%E5%90%88.md)
-- [一些拥有的host](%E4%B8%80%E4%BA%9B%E6%9C%89%E7%94%A8%E7%9A%84host.md)
