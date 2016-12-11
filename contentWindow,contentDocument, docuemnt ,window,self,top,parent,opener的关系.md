@@ -1,3 +1,5 @@
+# contentWindow,contentDocument, docuemnt ,window,self,top,parent,opener的关系
+
 ##前言
 
 最近又开始开发公司的后台管理系统，由于整个页面的架构是通过iframe来进行区域划分，所以经常需要通过 父窗口来调用子窗口方法或者子窗口获取父窗口变量等窗口的情况，所以整理一下相关的用法，避免遗忘！
