@@ -7,5 +7,4 @@
 - [CSS3原生变量var](CSS3%E5%8E%9F%E7%94%9F%E5%8F%98%E9%87%8Fvar.md)
 - [前端站点合集](https://github.com/AlanZhang001/webtouch/blob/master/%E5%89%8D%E7%AB%AF%E7%AB%99%E7%82%B9%E5%90%88%E9%9B%86.md)
 - [一些自己觉得不错的文章,有空多读读](https://github.com/AlanZhang001/webtouch/blob/master/%E5%A5%BD%E6%96%87%E7%AB%A0%E9%9B%86%E5%90%88.md)
-- [工作中遇到的坑](%E5%B7%A5%E4%BD%9C%E4%B8%AD%E9%81%87%E5%88%B0%E7%9A%84%E5%9D%91%E9%9B%86%E5%90%88.md)
 - [工作1-2年WEB知识点总结](%E5%B7%A5%E4%BD%9C1-2%E5%B9%B4WEB%E7%9F%A5%E8%AF%86%E7%82%B9.md)
