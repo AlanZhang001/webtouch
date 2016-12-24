@@ -37,4 +37,5 @@
 
 ## 学习参考链接
 
-- npmjs:<https://docs.npmjs.com/cli/>
+- package.json 字段说明: <http://mujiang.info/translation/npmjs/files/package.json.html>
+- npmjs: <https://docs.npmjs.com/cli/>
