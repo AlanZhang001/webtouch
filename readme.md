@@ -1,6 +1,6 @@
 ### 文章列表
 
-### 待完成：git 笔记(git%E7%AC%94%E8%AE%B0.md)
+### 待完成：[git 笔记](git%E7%AC%94%E8%AE%B0.md)
 
 ### WEB 前端
 - [contentWindow,contentDocument, docuemnt ,window,self,top,parent,opener的关系](https://github.com/AlanZhang001/webtouch/blob/master/contentWindow%2CcontentDocument%2C%20docuemnt%20%2Cwindow%2Cself%2Ctop%2Cparent%2Copener%E7%9A%84%E5%85%B3%E7%B3%BB.md)
