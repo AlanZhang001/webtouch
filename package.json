@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/AlanZhang001/webtouch/issues"
   },
-  "homepage": "https://github.com/AlanZhang001/webtouch#readme"
+  "homepage": "https://github.com/AlanZhang001/webtouch#readme",
+  "directories": {
+    "doc": "docs"
+  }
 }
