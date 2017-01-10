@@ -34,6 +34,7 @@
 
 - **npm unpublish packageName@x,y.x**: 取消某个版本的发布状态
 
+- **npm prune**: 列出在node_modules中存在但是为在package.json中保存的npm包
 
 ## 学习参考链接
 
