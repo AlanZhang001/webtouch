@@ -14,6 +14,7 @@
 - [前端站点合集](https://github.com/AlanZhang001/webtouch/blob/master/%E5%89%8D%E7%AB%AF%E7%AB%99%E7%82%B9%E5%90%88%E9%9B%86.md)
 - [一些自己觉得不错的文章,有空多读读](https://github.com/AlanZhang001/webtouch/blob/master/%E5%A5%BD%E6%96%87%E7%AB%A0%E9%9B%86%E5%90%88.md)
 - [工作1-2年WEB知识点总结](%E5%B7%A5%E4%BD%9C1-2%E5%B9%B4WEB%E7%9F%A5%E8%AF%86%E7%82%B9.md)
+- [常见软件的坑及技巧](%E8%BD%AF%E4%BB%B6%E5%AE%89%E8%A3%85%E5%B8%B8%E8%A7%81%E5%9D%91.md)
 - [2016年终总结](2016%E5%B9%B4%E7%BB%88%E6%80%BB%E7%BB%93.md)
 - [2017年度计划](2017%E5%B9%B4%E5%BA%A6%E8%AE%A1%E5%88%92.md)
 
