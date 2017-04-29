@@ -22,6 +22,8 @@
 
 - **npm  config list：** 参看当前node的配置信息
 
+- **npm  config get [keyName]：** 参看当前node的配置信息中具体的属性，这里指list中出现的属性
+
 - **npm root：**查看当前包的安装路径
 
 - **npm root -g：**查看全局的包的安装路径
@@ -38,7 +40,11 @@
 
 - **npm home $package**: 开发某个包的主页
 
+- **env**: 列出所有的环境变量
 
+- **npm run原理**
+
+    ![asserts/npmscripts.png](asserts/npmscripts.png)
 
 ## 学习参考链接
 
