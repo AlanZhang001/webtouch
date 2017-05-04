@@ -46,6 +46,8 @@
 
     ![asserts/npmscripts.png](asserts/npmscripts.png)
 
+- **npm config set registry https://registry.npmjs.org/**: 设置npm的镜像源地址
+
 ## 学习参考链接
 
 - package.json 字段说明: <http://mujiang.info/translation/npmjs/files/package.json.html>
