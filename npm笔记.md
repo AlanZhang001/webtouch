@@ -38,7 +38,7 @@
 
 - **npm prune**: 列出在node_modules中存在但是为在package.json中保存的npm包
 
-- **npm home $package**: 开发某个包的主页
+- **npm home $package**: 打开某个包的主页
 
 - **env**: 列出所有的环境变量
 
