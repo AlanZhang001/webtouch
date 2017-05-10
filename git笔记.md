@@ -36,7 +36,21 @@ $ git commit --amend
 需要在git库中删除该文件，并更新。
 然后再次git status查看状态，file1文件不再显示状态。
 
+###### 3. 更新submodule的URL
+```
+- 更新 .gitsubmodule中对应submodule的条目URL
 
+- 更新 .git/config 中对应submodule的条目的URL
+
+- 执行 git submodule sync
+```
+
+###### 4. 增加子模块
+ 
+- 添加子模块： `git submodule add http://gitlab.futunn.com/alanzhang/[componentname].git ./submodule/[componentname]`
+- 更新各个子模块： `git submodule init;git submodule update;git submodule foreach "git checkout master;git pull origin master;"`
+- 批量执行任务:`git submodule foreach 'commend ...'`
+ 
 
 ## 学习参考链接
 - 常用 Git 命令清单<http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html>
