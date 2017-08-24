@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta charset="<%$app->charset%>"/>
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="renderer" content="webkit">
+        <title>测试IntersectionObserver的懒加载功能</title>
+
+        <style type="text/css">
+            html,body{
+                height: 100%;
+            }
+            img{
+                width: 200px;
+                height: 100px;
+                border: none;
+                overflow: hidden;
+            }
+            ul{
+                margin: 0;
+                padding: 0;
+            }
+            .wrapper{
+                height: 70%;
+                margin: 0;
+                padding: 0;
+                overflow: auto;
+                text-align: center;
+                border: 1px solid #dedede;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>测试IntersectionObserver的懒加载功能</h3>
+        <div class="wrapper">
+            <ul>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_02.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_03.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_04.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module02_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module03_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module03_02.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module04_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module04_02.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_01.jpg?v=module01_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_02.jpg?v=module01_02.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_03.jpg?v=module01_03.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_04.jpg?v=module01_04.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module02_01.jpg?v=module02_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module03_01.jpg?v=module03_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module03_02.jpg?v=module03_02.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module04_01.jpg?v=module04_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module04_02.jpg?v=module04_02.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_01.jpg?v=333333333333333" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_02.jpg?v=333333333333333" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_03.jpg?v=333333333333333" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_04.jpg?v=333333333333333" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module02_01.jpg?v=333333333333333" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module03_01.jpg?v=333333333333333" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module03_02.jpg?v=333333333333333" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module04_01.jpg?v=333333333333333" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module04_02.jpg?v=333333333333333" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_01.jpg?v=module01_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_02.jpg?v=module01_02.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_03.jpg?v=module01_03.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_04.jpg?v=module01_04.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module02_01.jpg?v=module02_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module03_01.jpg?v=module03_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module03_02.jpg?v=module03_02.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module04_01.jpg?v=module04_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module04_02.jpg?v=module04_02.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_01.jpg?v=module01_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_02.jpg?v=module01_02.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_03.jpg?v=module01_03.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_04.jpg?v=module01_04.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module02_01.jpg?v=module02_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module03_01.jpg?v=module03_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module03_02.jpg?v=module03_02.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module04_01.jpg?v=module04_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module04_02.jpg?v=module04_02.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_01.jpg?v=module01_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_02.jpg?v=module01_02.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_03.jpg?v=module01_03.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module01_04.jpg?v=module01_04.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module02_01.jpg?v=module02_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module03_01.jpg?v=module03_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module03_02.jpg?v=module03_02.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module04_01.jpg?v=module04_01.jpg" alt="加载中"></li>
+                <li class="item"><img src="loading.png" link="https://cloudmain.futunn.com/nnuniversity/images/university2017/module04_02.jpg?v=module04_02.jpg" alt="加载中"></li>
+            </ul>
+        </div>
+    </body>
+    <script type="text/javascript">
+        let observer = new IntersectionObserver((changes) => {
+                changes.forEach((change) => {
+                    var target = change.target.querySelector('img');
+                    target.setAttribute('src',target.getAttribute('link'));
+                    observer.unobserve(change.target);
+                });
+            },{
+                threshold:0.2// 元素有20%的部分进入视窗才触发
+            }
+        );
+        ([...document.querySelectorAll('.item')]).forEach(function (item) {
+            observer.observe(item);
+        });
+    </script>
+</html>
