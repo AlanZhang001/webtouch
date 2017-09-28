@@ -73,3 +73,20 @@ div{
 | 0.9 | E5 |
 
 >将透明度值\*255向下取整，转换成16进制即可。Math.floor(255\*0.1) = 0x19
+
+#### 让readonly的元素没有输入框
+```
+<input type="text" readonly="true"/>
+
+<!--添加样式-->
+<style>
+    -webkit-user-select:none;
+    user-select: none;
+    -ms-user-select: none;
+    -moz-user-select: -moz-none;
+</style>
+<!--设置属性-->
+<script type="text/javascript">
+    intputNode.setAttribute('unselectable','on');
+</script>
+```
