@@ -52,6 +52,8 @@ $ git commit --amend
 - 批量执行任务:`git submodule foreach 'commend ...'`
  
 
+## progit 书籍查看进度
+
 ## 学习参考链接
 - 常用 Git 命令清单<http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html>
 - Git版本控制软件结合GitHub从入门到精通常用命令学习手册<http://www.ihref.com/read-16369.html>
