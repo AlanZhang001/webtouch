@@ -25,6 +25,10 @@
 
 #### 4. 兼容性
 
+Chrome Android 60到底是什么版本
+
+![](./source/websocket.jpg)
+
 ## 二、开发入门
 
 ## 三、Step-by-Step
