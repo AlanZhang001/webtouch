@@ -36,7 +36,18 @@ app.use(logger())
 }));
 
 const WebSocketServer = require('ws').Server;
-const wss = new WebSocketServer( { server : app } );
+const wss = new WebSocketServer( { port: 8080 });
+
+wss.on('connection', function connection(ws) {
+
+    console.log('server: connection.');
+
+    ws.on('message', function incoming(message) {
+        console.log('server: received: %s', message);
+    });
+
+    ws.send('hello world');
+});
 
 // 启动server并打开默认链接
 app.listen(3000, () => {
