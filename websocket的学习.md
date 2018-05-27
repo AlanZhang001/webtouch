@@ -46,7 +46,8 @@ NodeJS本身并没有原生的WebSocket支持，但是有第三方的实现。�
 ## 五、最佳实践
 
 ### 参考链接：
-- https://mp.weixin.qq.com/s/JPU0CsZ2ktnMRz5XtgBlPQ
-- http://www.ruanyifeng.com/blog/2017/05/websocket.html
-- https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001472780997905c8f293615c5a42eab058b6dc29936a5c000
-- https://juejin.im/post/5b0351b051882542821ca2a1?utm_source=gold_browser_extension
+- <https://mp.weixin.qq.com/s/JPU0CsZ2ktnMRz5XtgBlPQ>
+- <http://www.ruanyifeng.com/blog/2017/05/websocket.html>
+- <https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001472780997905c8f293615c5a42eab058b6dc29936a5c000>
+- <https://juejin.im/post/5b0351b051882542821ca2a1?utm_source=gold_browser_extension>
+- <http://ued.sina.com.cn/?p=900>
