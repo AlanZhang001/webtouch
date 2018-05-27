@@ -9,8 +9,7 @@ Object.assign(ws,{
     // 建立连接
     onopen: function(){
         console.log('opened');
-
-        // FASO发送消息
+        // 发送消息
         ws.send('hello server,i\'m client');
     },
     // 接受到消息
@@ -18,5 +17,3 @@ Object.assign(ws,{
         console.log('mesasge:' + e.data);
     }
 });
-
-
