@@ -4,7 +4,7 @@
   "description": "web knowledge",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start-ws": "node ./demos/websocket/server/server.js"
   },
   "repository": {
     "type": "git",
@@ -18,8 +18,18 @@
   "bugs": {
     "url": "https://github.com/AlanZhang001/webtouch/issues"
   },
+  "devDependencies": {
+    "koa": "^2.3.0",
+    "koa-body": "^2.3.0",
+    "koa-logger": "^3.0.0",
+    "koa-router": "^7.2.1",
+    "koa-static": "^3.0.0"
+  },
   "homepage": "https://github.com/AlanZhang001/webtouch#readme",
   "directories": {
     "doc": "docs"
+  },
+  "dependencies": {
+    "ws": "^5.2.0"
   }
 }
