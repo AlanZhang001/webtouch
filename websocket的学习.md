@@ -65,7 +65,39 @@ wss://secure.example.com/
 
 ###### 联系
 
-#### 2. 有哪些优点
+WebSocket在建立握手连接时，数据是通过http协议传输的，这里面用到的只是http协议一些简单的字段。但是在建立连接之后，真正的数据传输阶段是不需要http协议参与的。
+建立连接的过程是这样的：
+
+1. 浏览器与WebSocket服务器通过TCP三次握手建立连接，如果这个建立连接失败，那么后面的过程就不会执行，Web应用程序将收到错误消息通知。
+2. 在TCP建立连接成功后，浏览器通过http协议传送WebSocket支持的版本号，协议的字版本号，原始地址，主机地址等等一些列字段给服务器端。例如：
+
+    ```
+    GET ws://localhost:8080/ HTTP/1.1
+    Host: localhost:8080
+    Connection: Upgrade
+    Pragma: no-cache
+    Cache-Control: no-cache
+    Upgrade: websocket
+    Origin: http://localhost:3000
+    Sec-WebSocket-Version: 13
+    User-Agent: Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/66.0.3359.139 Safari/537.36
+    DNT: 1
+    Accept-Encoding: gzip, deflate, br
+    Accept-Language: zh-CN,zh;q=0.9
+    Sec-WebSocket-Key: FFIay2n7pxO1jRaR4IiuBw==
+    Sec-WebSocket-Extensions: permessage-deflate; client_max_window_bits
+    ```
+
+3.  WebSocket服务器收到浏览器发送来的握手请求后，如果数据包数据和格式正确，客户端和服务器端的协议版本号匹配等等，就接受本次握手连接，并给出相应的数据回复，同样回复的数据包也是采用http协议传输。
+
+    ```
+    HTTP/1.1 101 Switching Protocols
+    Upgrade: websocket
+    Connection: Upgrade
+    Sec-WebSocket-Accept: RH4E4orwcBih78+xUKYeQYWgsCQ=
+    ```
+
+#### 2. 有哪些优势
 
 #### 3. 学习门槛
 
@@ -76,7 +108,7 @@ wss://secure.example.com/
 
 ![](./source/websocket.jpg)
 
-> 
+>
 ## 二、开发入门
 
 ## 三、Step-by-Step
