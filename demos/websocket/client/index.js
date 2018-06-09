@@ -10,6 +10,7 @@ Object.assign(ws,{
     onopen: function(){
         console.log('opened');
 
+        // FASO发送消息
         ws.send('hello server,i\'m client');
     },
     // 接受到消息
