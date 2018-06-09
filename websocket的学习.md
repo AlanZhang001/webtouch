@@ -255,11 +255,19 @@ Sec-WebSocket-Accept: RH4E4orwcBih78+xUKYeQYWgsCQ=
 
 ## 三、适用场景与问题
 
+#### 适用我们的场景
+1. 在线咨询【不兼容IE9】
+2. walle发布系统
+
+#### 问题
+1. 跨域如何鉴权？跨域时cookie无法被携带
+2. 
+
 ### 参考链接：
 - [HTTP Keep-Alive模式](http://www.cnblogs.com/skynet/archive/2010/12/11/1903347.html)
 - [WebSocket：5分钟从入门到精通](https://mp.weixin.qq.com/s/JPU0CsZ2ktnMRz5XtgBlPQ)
 - <https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001472780997905c8f293615c5a42eab058b6dc29936a5c000>
-- <https://juejin.im/post/5b0351b051882542821ca2a1?utm_source=gold_browser_extension>
+- [全双工通信的 WebSocket](https://juejin.im/post/5b0351b051882542821ca2a1?utm_source=gold_browser_extension)
 - [WebSocket实战](http://ued.sina.com.cn/?p=900)
 - [爱测未来性能-你不得不知道的WebSocket](https://blog.csdn.net/itest_2016/article/details/72395818)
 - [WebSocket 是什么原理？为什么可以实现持久连接](https://www.zhihu.com/question/20215561)
