@@ -1,17 +1,17 @@
 # websocket
 
-## 前置知识
+## 1、前置知识
 
 在学习websocket的时候，往往需要对照http协议来比较，因此是十分必要先普及一下http的相关知识。
 
-#### http1.0/1.1、keep-live
+#### 1.1 http1.0/1.1、keep-live
 1. http是一个请求-响应的协议，也就是一个Request对应一个response，不会对应多个。而且顺序也是先有请求再有响应，response不能主动发起。
 2. http协议分为了0.9(已过时)，1.0 和 1.1，2.0(这里不讲)。
 3. 在http1.0 中，每一个http请求，客户端都要和服务端新建一个TCP连接，完成之后立即断开连接；在http1.1 中，引入了保持连接（keep-live）的机制,一次TCP连接，可以有多组请求-响应，而不必多次建立TCP连接。
 
 ![HTTP_persistent_connection.svg](./asserts/HTTP_persistent_connection.svg)
 
-#### 短轮询、长轮询
+#### 1.2 短轮询、长轮询
 
 - 短轮询: 在特定的的时间间隔（如每1秒），由浏览器对服务器发出HTTP请求，然后由服务器返回最新的数据给客户端的浏览器.
 
@@ -29,9 +29,9 @@
 
 >3. 长短轮询是服务端通过编程的方式来实现的，而长短链接是通过TCP传输协议来规定和实现的。
 
-## 一、什么是websocket
+## 2. 什么是websocket
 
-#### 0. 什么是websocket
+#### 2.1. 什么是websocket
 - 一种浏览器和服务器间进行`双向会话`的高级技术(新协议)，在HTML5中开始支持
 - 可以向服务器发送消息
 - 接受基于事件驱动的响应，而不是向服务器轮训
@@ -39,9 +39,9 @@
 一次websocket连接如下:
 ![](./asserts/websocket.jpg)
 
-#### 1. 和普通HTTP协议的异同
+#### 2.2  和普通HTTP协议的异同
 
-###### 相同点：
+###### 2.2.1 相同点：
 
 1. 都是计算机网络应用层的协议。
 2. 都是基于TCP来简历连接，使用相同的TCP端口；默认情况下，Websocket协议使用80端口；运行在TLS之上时，默认使用443端口。
@@ -51,7 +51,7 @@ ws://example.com/wsapi
 wss://secure.example.com/
 ```
 
-###### 不同点/特点：
+###### 2.2.2 不同点/特点：
 1. Websocket其实是一个新协议，跟HTTP协议基本没有关系,它是HTTP协议上的一种补充,有交集，但是并不是全部。
 ![websocket vs http](./asserts/websocket-http.jpg)
 
@@ -62,7 +62,7 @@ wss://secure.example.com/
 
 ![](./asserts/frames.png)
 
-###### 联系
+###### 2.2.3 联系
 
 WebSocket在建立握手连接时，数据是通过http协议传输的，这里面用到的只是http协议一些简单的字段。但是在建立连接之后，真正的数据传输阶段是不需要http协议参与的。
 建立连接的过程是这样的：
@@ -97,7 +97,7 @@ Sec-WebSocket-Accept: RH4E4orwcBih78+xUKYeQYWgsCQ=
 
 4. 浏览器收到服务器回复的数据包后，如果数据包内容、格式都没有问题的话，就表示本次连接成功，触发onopen事件，此时通过send接口想服务器发送数据。否则，握手连接失败，触发onerror事件,数据传输过程不需要http协议的参与。
 
-#### 2. websocket相比http的 优势
+#### 2.3 websocket相比http的 优势
 
 - `被动VS主动`:websocket全双工，浏览器和服务端可以相互主动发消息。
 - `即时通讯`: websocket相对于http的优点，更多的体现在即时通讯应用上。相比于传统的实现方式
@@ -108,16 +108,16 @@ Sec-WebSocket-Accept: RH4E4orwcBih78+xUKYeQYWgsCQ=
     - 实现：长短轮询的实现都需要通过代码来控制实现，而websocket本身就支持双向通讯，开发起来更加简单。
 - `跨域`：websocket不适用于同源策略，支持跨域通信；WebSocket 客户端和服务端建立连接时，header中带有origin字段标识脚本请求的源，服务端可以根据该字段来判断是否同意建立连接。
 
-#### 3. 兼容性
+#### 2.3 兼容性
 
 - 支持性良好
 - IE9 上不适用
 
 ![](./source/websocket.jpg)
 
-## 二、Step-by-Step
+## 3. Step-by-Step
 
-#### 1. 服务端
+#### 3.1 服务端
 NodeJS本身并没有原生的WebSocket支持，但是有第三方的实现。这里，选择`ws`来作为服务端实现。使用koa2来搭建http服务。
 
 ```
@@ -163,7 +163,7 @@ app.listen(3000, () => {
 
 ```
 
-#### 2. 客户端
+#### 3.2 客户端
 
 客户端直接直接使用webSocket对象建立连接。
 
@@ -186,7 +186,7 @@ Object.assign(ws,{
 });
 ```
 
-#### 3. 协议详解
+#### 3.3 协议详解
 
 建立连接：
 ```
@@ -247,9 +247,9 @@ Sec-WebSocket-Accept: RH4E4orwcBih78+xUKYeQYWgsCQ=
 # 根据客户端请求首部的Sec-WebSocket-Key计算出来的值，同Sec-WebSocket-Ke一起提供基础的防护，减少恶意连接、意外连接
 ```
 
-## 三、适用场景与问题
+## 4 适用场景与问题
 
-#### 适用我们的场景
+#### 4.1 适用我们的场景
 1. 在线咨询 
 在线咨询目前使用的是短轮询，不断发送请求询问客服是否有回复
 ![](./asserts/consult.jpg)
@@ -262,15 +262,15 @@ Sec-WebSocket-Accept: RH4E4orwcBih78+xUKYeQYWgsCQ=
 4. 移动端股票分时数据
 5. 退关推广活动的实时数据比如：排行榜，报名人数，参与游戏人数
 
-#### 问题
+#### 4.2 问题
 
-###### 兼容性问题
+###### 4.2.1 兼容性问题
 移动端支持良好，web端不支持IE9及以下版本，需要提过flash插件来实现兼容处理。
 比如：[web-socket-js](https://github.com/gimite/web-socket-js)
 
 ![](./asserts/web-socket-js.jpg)
 
-###### 安全问题
+###### 4.4.2 安全问题
 WebSocket作为一种通信协议引入到Web应用中，并不会解决Web应用中存在的安全问题，因此WebSocket应用的安全实现是由开发者或服务端负责。
 
 - **认证**:WebSocket 协议没有规定服务器在握手阶段应该如何认证客户端身份。服务器可以采用任何 HTTP 服务器的客户端身份认证机制，如 cookie认证，HTTP 基础认证，TLS 身份认证等。
@@ -287,7 +287,7 @@ WebSocket作为一种通信协议引入到Web应用中，并不会解决Web应�
 
     WebSocket建立的是持久连接，只有客户端或服务端其中一方提出关闭连接的请求，WebSocket连接才关闭，因此**攻击者可以向服务器发起大量的申请建立WebSocket连接的请求，建立持久连接，耗尽服务器资源，引发拒绝服务**。针对这种攻，可以通过设置单IP可建立连接的最大连接数的方式防范。攻击者还可以通过发送一个单一的庞大的数据帧(如, 2^16)，或者发送一个长流的分片消息的小帧，来耗尽服务器的内存，引发拒绝服务攻击, 针对这种攻击，通过限制帧大小和多个帧重组后的总消息大小的方式防范。
 
-### 参考链接：
+## 参考链接：
 - [HTTP Keep-Alive模式](http://www.cnblogs.com/skynet/archive/2010/12/11/1903347.html)
 - [WebSocket：5分钟从入门到精通](https://mp.weixin.qq.com/s/JPU0CsZ2ktnMRz5XtgBlPQ)
 - [全双工通信的 WebSocket](https://juejin.im/post/5b0351b051882542821ca2a1?utm_source=gold_browser_extension)
