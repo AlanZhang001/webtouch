@@ -97,9 +97,7 @@ Sec-WebSocket-Accept: RH4E4orwcBih78+xUKYeQYWgsCQ=
 
 4. 浏览器收到服务器回复的数据包后，如果数据包内容、格式都没有问题的话，就表示本次连接成功，触发onopen事件，此时通过send接口想服务器发送数据。否则，握手连接失败，触发onerror事件,数据传输过程不需要http协议的参与。
 
-#### 2. websocket VS http
-
-###### 优点
+#### 2. websocket相比http的 优势
 
 - `被动VS主动`:websocket全双工，浏览器和服务端可以相互主动发消息。
 - `即时通讯`: websocket相对于http的优点，更多的体现在即时通讯应用上。相比于传统的实现方式
@@ -110,11 +108,7 @@ Sec-WebSocket-Accept: RH4E4orwcBih78+xUKYeQYWgsCQ=
     - 实现：长短轮询的实现都需要通过代码来控制实现，而websocket本身就支持双向通讯，开发起来更加简单。
 - `跨域`：websocket不适用于同源策略，支持跨域通信；WebSocket 客户端和服务端建立连接时，header中带有origin字段标识脚本请求的源，服务端可以根据该字段来判断是否同意建立连接。
 
-###### 缺点
-
-#### 3. 学习门槛
-
-#### 4. 兼容性
+#### 3. 兼容性
 
 - 支持性良好
 - IE9 上不适用
@@ -256,19 +250,49 @@ Sec-WebSocket-Accept: RH4E4orwcBih78+xUKYeQYWgsCQ=
 ## 三、适用场景与问题
 
 #### 适用我们的场景
-1. 在线咨询【不兼容IE9】
+1. 在线咨询 
+在线咨询目前使用的是短轮询，不断发送请求询问客服是否有回复
+![](./asserts/consult.jpg)
 2. walle发布系统
+发布系统在发布过程中，更新进度是通过不断的发送请求来获取最新进度
+![](./asserts/walle.png)
+3. 微信小程序/小游戏
+小程序的架构非常简单，这里有两条网络同步，一条是 HTTPS 通路，用于常规请求。对于 WebSocket 请求，会先走 HTTPS 后再切换协议到 WebSocket 的 TCP 连接，从而实现全双工通信。详细见腾讯云[专栏](https://cloud.tencent.com/document/product/448/6405)
+![](./asserts/wxapp.jpg)
+4. 移动端股票分时数据
+5. 退关推广活动的实时数据比如：排行榜，报名人数，参与游戏人数
 
 #### 问题
-1. 跨域如何鉴权？跨域时cookie无法被携带
-2. 
+
+###### 兼容性问题
+移动端支持良好，web端不支持IE9及以下版本，需要提过flash插件来实现兼容处理。
+比如：[web-socket-js](https://github.com/gimite/web-socket-js)
+
+![](./asserts/web-socket-js.jpg)
+
+###### 安全问题
+WebSocket作为一种通信协议引入到Web应用中，并不会解决Web应用中存在的安全问题，因此WebSocket应用的安全实现是由开发者或服务端负责。
+
+- **认证**:WebSocket 协议没有规定服务器在握手阶段应该如何认证客户端身份。服务器可以采用任何 HTTP 服务器的客户端身份认证机制，如 cookie认证，HTTP 基础认证，TLS 身份认证等。
+
+- **授权**:同认证一样，WebSocket协议没有指定任何授权方式，应用程序中用户资源访问等的授权策略由服务端或开发者实现。
+
+- **跨域请求**:WebSocket使用基于源的安全模型，在发起WebSocket握手请求时，浏览器会在请求中添加一个名为Origin的HTTP头，Oringin字段表示发起请求的源，以此来防止未经授权的跨站点访问请求。WebSocket 的客户端不仅仅局限于浏览器，因此 WebSocket 规范没有强制规定握手阶段的 Origin 头是必需的，并且WebSocket不受浏览器同源策略的限制。如果服务端没有针对Origin头部进行验证可能会导致跨站点WebSocket劫持攻击。
+- **拒绝服务**:
+    + 客户端拒绝服务
+
+    WebSocket连接限制不同于HTTP连接限制，和HTTP相比，WebSocket有一个更高的连接限制，不同的浏览器有自己特定的最大连接数,如：火狐浏览器默认最大连接数为200。**通过发送恶意内容，用尽允许的所有Websocket连接耗尽浏览器资源，引起拒绝服务***。
+
+    + (2). 服务器端拒绝服务
+
+    WebSocket建立的是持久连接，只有客户端或服务端其中一方提出关闭连接的请求，WebSocket连接才关闭，因此**攻击者可以向服务器发起大量的申请建立WebSocket连接的请求，建立持久连接，耗尽服务器资源，引发拒绝服务**。针对这种攻，可以通过设置单IP可建立连接的最大连接数的方式防范。攻击者还可以通过发送一个单一的庞大的数据帧(如, 2^16)，或者发送一个长流的分片消息的小帧，来耗尽服务器的内存，引发拒绝服务攻击, 针对这种攻击，通过限制帧大小和多个帧重组后的总消息大小的方式防范。
 
 ### 参考链接：
 - [HTTP Keep-Alive模式](http://www.cnblogs.com/skynet/archive/2010/12/11/1903347.html)
 - [WebSocket：5分钟从入门到精通](https://mp.weixin.qq.com/s/JPU0CsZ2ktnMRz5XtgBlPQ)
-- <https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/001472780997905c8f293615c5a42eab058b6dc29936a5c000>
 - [全双工通信的 WebSocket](https://juejin.im/post/5b0351b051882542821ca2a1?utm_source=gold_browser_extension)
 - [WebSocket实战](http://ued.sina.com.cn/?p=900)
 - [爱测未来性能-你不得不知道的WebSocket](https://blog.csdn.net/itest_2016/article/details/72395818)
 - [WebSocket 是什么原理？为什么可以实现持久连接](https://www.zhihu.com/question/20215561)
 - [谈谈HTTP协议中的短轮询、长轮询、长连接和短连接](https://mp.weixin.qq.com/s/Jo2G-1OE8s8BEEdsnjAhtQ)
+- [WebSocket应用安全问题分析](https://security.tencent.com/index.php/blog/msg/119)
