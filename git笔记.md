@@ -52,8 +52,10 @@ $ git commit --amend
 - 批量执行任务:`git submodule foreach 'commend ...'`
  
 ##### 5. 重写提交历史说明
-- git commit --amend -m'这是新的提交说明'
-- 不能对已经push的提交做修改comment
+
+- 改变最近一次提交
+    + git commit --amend -m'这是新的提交说明'
+    + 不能对已经push的提交做修改comment
 
 ## progit 书籍查看进度
 
