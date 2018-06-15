@@ -51,6 +51,10 @@ $ git commit --amend
 - 更新各个子模块： `git submodule init;git submodule update;git submodule foreach "git checkout master;git pull origin master;"`
 - 批量执行任务:`git submodule foreach 'commend ...'`
  
+##### 5. 重写提交历史说明
+- git commit --amend -m'这是新的提交说明'
+- 不能对已经push的提交做修改comment
+
 ## progit 书籍查看进度
 
 `Git 基础 - 记录每次更新到仓库`
