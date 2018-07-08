@@ -25,4 +25,4 @@
      user-select:none;         
      cursor:default;
 }                              
-
+说明：在chrome上并没有发现select：none带来的影响，firefox会有这个问题
