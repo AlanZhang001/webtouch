@@ -1,0 +1,28 @@
+## css world 学习笔记
+
+#### chapter 10
+
+#### chapter 11 用户界面样式
+
+```
+1. 万万不可在全局设置outline:0 none
+这在无障碍访问方面非常有用， 对于没有鼠标输入的情况下，可以通过TAB键来切换当前的焦点，默认情况下，对于处于focus状态的元素，浏览器会通过outline（比如黄色或者蓝色）来做区分。
+
+2. 管标属性cursor
+有些场景会希望文本不会被选中，因此会对元素做如下处理：
+.notselect:{
+     -webkit-user-select:none;
+     -moz-user-select:none;
+     -ms-use-select:none;
+     user-select:none;
+}
+设置了user-select：none的元素，其cursor值默认是text（效果是鼠标显示为“I”，类似鼠标聚焦input框是的效果）；文本既然不能被选中，但是又显示为cursor：text的效果，会给有误导性，因此，设置select：none;时，需要设置cursor；default;
+
+.notselect:{                   
+     -webkit-user-select:none; 
+     -moz-user-select:none;    
+     -ms-use-select:none;      
+     user-select:none;         
+     cursor:default;
+}                              
+
