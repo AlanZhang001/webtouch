@@ -47,6 +47,7 @@ npm publish: 发布某一个包至npm
 npm unpublish packageName@x,y.x: 取消某个版本的发布状态
 npm prune: 列出在node_modules中存在但是为在package.json中保存的npm包
 npm home $package: 打开某个包的主页
+npm install --only=dev:只安装devDependencies中的依赖
 ```
 
 ###### 7. env
