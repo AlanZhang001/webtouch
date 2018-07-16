@@ -8,7 +8,7 @@
 1. 万万不可在全局设置outline:0 none
 这在无障碍访问方面非常有用， 对于没有鼠标输入的情况下，可以通过TAB键来切换当前的焦点，默认情况下，对于处于focus状态的元素，浏览器会通过outline（比如黄色或者蓝色）来做区分。
 
-2. 管标属性cursor
+2. 光标属性cursor
 有些场景会希望文本不会被选中，因此会对元素做如下处理：
 .notselect:{
      -webkit-user-select:none;
@@ -26,3 +26,16 @@
      cursor:default;
 }                              
 说明：在chrome上并没有发现select：none带来的影响，firefox会有这个问题
+
+
+3. 自定义光标
+ - IE 8 不支持 cursor：none;属性，但是可以通过自定义光标属性来模拟
+ - IE系列自定义光标只支持`.cur`后缀的图片格式
+ - chrome等现代浏览器可以直接使用png格式的图片来制作管标
+ ```
+ curosr_diy{
+     cursor:url(cursor.cur);// for ie  
+     cursor:url(cursor.png);// for chrome
+ }
+ ```
+
