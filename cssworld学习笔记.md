@@ -1,6 +1,19 @@
 ## css world 学习笔记
 
-#### chapter 10
+#### chapter 10 元素的显示与隐藏
+
+```
+1. 元素display：none时，背景图片的加载情况
+
+2. display与元素的显隐
+- 对于ol有序列表（每行前面会显示1，2，3）中的li，display：none的元素不计入计算；但是visibility：hidden的元素仍然会计入计算，只是hidden的元素不可见而已
+- display：none的表单元素仍然会在form表单中被提交，但是disabled的元素不会
+
+3. visiblity与元素的显隐
+- 父元素设置visibility：hidden，子元素也会看不见，子元素也会继承该属性，但是当给子元素重新加上visibility：hidden的时候，子元素会再次显示出来（挺神奇的）
+
+4. display的显隐控制，不影响animation动画的执行，即每次隐藏再显示，animation动画还是会重新执行，但是会影响transition的过度效果，即每次隐藏再显示，过度效果是出不来的。但是visibility不影响transition的过度效果。
+```
 
 #### chapter 11 用户界面样式
 
