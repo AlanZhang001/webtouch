@@ -27,12 +27,10 @@
 }                              
 说明：在chrome上并没有发现select：none带来的影响，firefox会有这个问题
 
-
 3. 自定义光标
  - IE 8 不支持 cursor：none;属性，但是可以通过自定义光标属性来模拟
  - IE系列自定义光标只支持`.cur`后缀的图片格式
  - chrome等现代浏览器可以直接使用png格式的图片来制作管标
- ```
  curosr_diy{
      cursor:url(cursor.cur);// for ie  
      cursor:url(cursor.png);// for chrome
