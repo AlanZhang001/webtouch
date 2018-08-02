@@ -35,6 +35,7 @@ var util = {
 
 - 跨域时，安全协议源必须匹配请求的URL。（http到http，https到https）。如果不匹配，请求会报“拒绝访问”的错误。
 - XDomainRequest支持abort方法，但是不支持onabort回调，比较坑，需要自己手动去调用绑定的onabort方法
+- XDomainRequest.ontimeout不推荐使用故对于超时设置，最好通过settimeout来处理
 
 #### 2. 数据格式
 可以通过form-data和json的方式进行数据发送。
