@@ -59,7 +59,11 @@ $ git commit --amend
 
 ##### 6. 删除分支
 ```
+# 删除远程分支
 git push -d origin hotfix/xxxxxxx
+#删除本地分支，这个只能删除本地分支，要先删除远程再删除本地
+# 网上有 git fetch -p和git remote prune这种可以删除 远程分支被删除了的本地分支，但是实际测试没有效果
+git branch -d -r branchnam
 ```
 不知道为啥`git branch -d -r branchname`删除分支后，再次git ppull 会重新出现该分支
 
