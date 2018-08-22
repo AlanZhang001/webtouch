@@ -67,6 +67,12 @@ git branch -d -r branchnam
 ```
 不知道为啥`git branch -d -r branchname`删除分支后，再次git ppull 会重新出现该分支
 
+##### 7. 切换分支
+
+```
+- 且回上一个使用过的分支:git checkout -
+```
+
 ## 学习参考链接
 - 常用 Git 命令清单<http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html>
 - Git版本控制软件结合GitHub从入门到精通常用命令学习手册<http://www.ihref.com/read-16369.html>
