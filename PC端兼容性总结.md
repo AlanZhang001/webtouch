@@ -2,7 +2,7 @@
 
 重要针对于IE8，firfox等PC端浏览器
 
-## 笔记
+#### js
 
 -  Firefox对于类似“2010-12-20 15:55:00”这种时间的转换格式不感冒，返回NaN，查了查资料，把“-”替换为“/”就可以了；
 - 当函数在严格模式下的时候，访问arguments.callee会出错，arguments.caller也会报错！
@@ -24,60 +24,52 @@
     postion.y = ee.y || ee.pageY;
     return postion;
     ```
-    
 
 - 火狐的body在body标签没有被浏览器完全读入之前就存在，而IE则必须在body完全被读入之后才存在
 - 在火狐中，自己定义的属性必须getAttribute()取得，而固有属性可通过对象的方式进行获取
 - input[type=checkbox]:checked+label选择器在IE8 无效，IE8不支持：checked选择器
 - IE8浏览器在使用before，afer的时候必须使用单个：，现代浏览器使用:: 
 - IE8不支持 Date.now()
-- IE8 不支持输入框的palceholder属性，解决办法，通过focus及blur来模拟
-```
-<script src="jQuery.js"></script>
-<script type="text/javascript"> 
-if (!('placeholder' in document.createElement('input'))) {
 
-    $('input[placeholder],textarea[placeholder]').each(function() {
-        var that = $(this),
-            text = that.attr('placeholder');
-        if (that.val() === "") {
-            that.val(text).addClass('placeholder');
-        }
-        that.focus(function() {
-                if (that.val() === text) {
-                    that.val("").removeClass('placeholder');
-                }
-            })
-            .blur(function() {
-                if (that.val() === "") {
-                    that.val(text).addClass('placeholder');
-                }
-            })
-            .closest('form').submit(function() {
-                if (that.val() === text) {
-                    that.val('');
-                }
-            });
-    });
-}  
-</script>
-```
+#### css
 
-- 阻止默认事件
+##### 兼容IE8 RGBA的写法，见demo <demos/IErgba.html>
+ie8不支持rgba()函数，要在IE8中设置半透明，需要通过filter来解决此类问题
 ```
-if(e&&e.preventDefault){
-    e.preventDefault();
-}else{
-    e.returnValue = false;
+<body>
+    <div>
+        看看是不是透明的
+    </div>
+</body>
+<style>
+html,body{
+    width: 100%;
+    height: 100%;
+    background-color: #863737;
 }
-```
-
-- 阻止事件冒泡
-```
-if (e && e.stopPropagation) {
-    e.stopPropagation();
-} else {
-    e.cancelBubble = true;
+div{
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,.5);
+    filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#7Fffffff,endColorstr=#7Fffffff);
 }
+</style>
 ```
+这里#后面的7F是rgba透明度为0.5 的IEfilter值。gradient本身是用来做渐变的，由于不需要渐变，所以两个颜色都设置成了相同的颜色。
 
+透明度从0.1到0.9每个数字对应一个IEfilter值。对应关系如下：
+
+| rgba透明度值 | IEfilter值 |
+| ----- |:------:|
+| 0.1 | 19 |
+| 0.2 | 33 |
+| 0.3 | 4C |
+| 0.4 | 66 |
+| 0.5 | 7F |
+| 0.6 | 99 |
+| 0.7 | B2 |
+| 0.8 | C8 |
+| 0.9 | E5 |
+
+>将透明度值\*255向下取整，转换成16进制即可。Math.floor(255\*0.1) = 0x19
+]
