@@ -85,11 +85,6 @@ echo my name is ${name}zhang
 
 #### 6. 字符串 
 
-```sh
-#!/bin/sh
-# 本文参考：https://github.com/qinjx/30min_guides/blob/master/shell.md
-
-```
 
 ## 参考
 
