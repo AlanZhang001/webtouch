@@ -85,6 +85,22 @@ echo my name is ${name}zhang
 
 #### 6. 字符串 
 
+```
+#!/bin/sh
+# 1. 字符串可以用单引号，也可以用双引号，也可以不用引号
+# 2. 如果不用引号，只能定义没有空格的字符串，否者必须用引号
+str1=my_nameisalan;
+str2='my name is alan';
+str3="my name is alan";
+
+# 3. 单引号里的任何字符都会原样输出，单引号字符串中的变量是无效的
+# 4. 单引号中不能有单引号
+firstname='zhang'
+str4='my first name is $firstname';
+```
+
+# 5. 
+```
 
 ## 参考
 
