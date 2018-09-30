@@ -14,6 +14,13 @@ grep '笔记' CSS3原生变量var.md cssworld学习笔记.md
 
 # 更具关键字搜索进程（如搜索sublime）
 ps aux | grep Sublime
+
+# 将一段文本复制到系统剪贴板
+# mac: 将输出通过 | pbcopy 即可输出到系统剪贴板
+cat .bash_profile | pbcopy
+echo 'hello' | pbcopy
+# 将某个文件的内容复制到系统剪贴板
+pbcopy < .bash_profile
 ```
 
 ##### ps
