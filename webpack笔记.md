@@ -2,7 +2,14 @@
 
 ####  版本冲突
 
-###### 1. webpack 1.x 安装的babel-loader只能是6.x
+###### 1. babel-loader问题
+
+- webpack 1.x 安装的babel-loader只能是6.x
+
+###### 2. webpack压缩
+webpack 1.x 提供的压缩插件`webpack.optimize.UglifyJsPlugin`是不能压缩ES6语法的，解决办法有2个：
+- 方法1：在module中加上babel loader
+- 方法2：使用新版的压缩工具：[uglifyjs-webpack-plugin](https://github.com/webpack-contrib/uglifyjs-webpack-plugin)
 
 #### 工具相关
 
