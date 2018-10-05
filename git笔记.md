@@ -77,6 +77,19 @@ git branch -d -r branchnam
 
 - git无法追踪一个空的文件夹，当用户需要追踪(track)一个空的文件夹的时候,在文件夹中加入`.gitkeep`文件（文件内容为空）即可
 
+##### 9. github 做push的时候（http的方式）总是提示输入用户名和密码
+
+- 方法1：使用ssh 的方式并设置key
+- 方法2：
+```
+# 查看项目是用http还是git协议进行的下载
+# 比如会输出：origin  https://github.com/AlanZhang001/webtouch.git (fetch)
+git remote -v
+# 1. 进入项目根目录
+# 2. 运行如下命令即可：
+git config --global credential.helper store
+```
+
 ## 学习参考链接
 - 常用 Git 命令清单<http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html>
 - Git版本控制软件结合GitHub从入门到精通常用命令学习手册<http://www.ihref.com/read-16369.html>
