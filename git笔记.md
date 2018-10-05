@@ -75,6 +75,7 @@ git branch -d -r branchnam
 
 ##### 8. .gitkeep文件的用处
 
+- git无法追踪一个空的文件夹，当用户需要追踪(track)一个空的文件夹的时候,在文件夹中加入`.gitkeep`文件（文件内容为空）即可
 
 ## 学习参考链接
 - 常用 Git 命令清单<http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html>
