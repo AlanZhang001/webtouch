@@ -16,6 +16,30 @@ exports的用法只能是
 exports.xxx = xxx;
 ```
 
+因此，使用exports 、 module.exports导出的模块，使用的方式也有细微差别
+
+module.exports 
+```js
+// 导出 a.js
+function ajax(w){console.log(w)};
+module.exports = ajax;
+
+// 引入
+var ajax = require('a.js');
+ajax('hello');
+```
+
+exports
+```
+// 导出 a.js
+function ajax(w){console.log(w)};
+exports.ajax = ajax;
+// 等同于module.export.ajax = ajax
+
+// 引入
+var ajax = require('a.js').ajax;
+ajax('hello');
+```
 
 一段代码，理解一下就可以了
 ```js
