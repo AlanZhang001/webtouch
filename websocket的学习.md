@@ -44,7 +44,7 @@
 ###### 2.2.1 相同点：
 
 1. 都是计算机网络应用层的协议。
-2. 都是基于TCP来简历连接，使用相同的TCP端口；默认情况下，Websocket协议使用80端口；运行在TLS之上时，默认使用443端口。
+2. 都是基于TCP来建立连接，使用相同的TCP端口；默认情况下，Websocket协议使用80端口；运行在TLS之上时，默认使用443端口。
 3. 类似于与http与https，websocket也分为`ws`和`wss`协议头
 ```
 ws://example.com/wsapi
@@ -260,7 +260,7 @@ Sec-WebSocket-Accept: RH4E4orwcBih78+xUKYeQYWgsCQ=
 小程序的架构非常简单，这里有两条网络同步，一条是 HTTPS 通路，用于常规请求。对于 WebSocket 请求，会先走 HTTPS 后再切换协议到 WebSocket 的 TCP 连接，从而实现全双工通信。详细见腾讯云[专栏](https://cloud.tencent.com/document/product/448/6405)
 ![](./asserts/wxapp.jpg)
 4. 移动端股票分时数据
-5. 退关推广活动的实时数据比如：排行榜，报名人数，参与游戏人数
+5. 相关推广活动的实时数据比如：排行榜，报名人数，参与游戏人数
 
 #### 4.2 问题
 
