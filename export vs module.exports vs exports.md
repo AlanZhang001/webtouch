@@ -18,7 +18,7 @@ exports.xxx = xxx;
 
 因此，使用exports 、 module.exports导出的模块，使用的方式也有细微差别
 
-module.exports 
+#### module.exports 
 ```js
 // 导出 a.js
 function ajax(w){console.log(w)};
@@ -29,7 +29,7 @@ var ajax = require('a.js');
 ajax('hello');
 ```
 
-exports
+#### exports
 ```
 // 导出 a.js
 function ajax(w){console.log(w)};
@@ -41,7 +41,7 @@ var ajax = require('a.js').ajax;
 ajax('hello');
 ```
 
-一段代码，理解一下就可以了
+#### 一段代码，理解一下就可以了
 ```js
 (function webpackUniversalModuleDefinition(root, factory) {
     // 做UMD的导出处理
@@ -142,3 +142,83 @@ ajax('hello');
     ]);
 });
 ```
+
+## 2. es6的esport 和 commonjs 的exports
+这里主要讲es6的export和exports间的相互使用。
+
+```js
+// es6的写法
+export default function ajax(argument) {
+    console.log(argument);
+}
+
+// 经过babal处理之后：
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ajax;
+
+function ajax(argument) {
+  console.log(argument);
+}
+
+// 经过babal处理之后,通过require使用时，需要这样使用:
+var ajax = require('xxx.js').default
+```
+
+为了解决babel es6语法后，require使用时需要加default的情况，在babel时需要做一个add-default的处理
+
+配置一下.babelrc
+```json
+babel src --out-dir es5 --presets=es2015 --plugins=babel-plugin-transform-runtime,add-module-exports
+```
+
+或者配置一下webpack的loader
+
+```js
+module: {
+    rules:[
+    {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+            loader: 'babel-loader',
+            options: {
+                presets: ['env'],
+                plugins: [
+                    'transform-runtime',
+                    'add-module-exports'
+                ]
+            }
+        }
+    }]
+}
+```
+
+通过add-module-exports处理之后的结果：
+
+```js
+// add-module-exports处理之后:
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = ajax;
+/**
+ * 对ajax的封装,支持promise回调
+ * @module xhr2
+ * @author alanzhang <alanzhang@futunn.com>
+ */
+
+function ajax(argument) {
+  console.log(argument);
+}
+
+// export default ajax;
+
+module.exports = exports["default"];
+
+// 通过require直接引用即可：
+var ajax = require('xx.js')
+```
+
+
