@@ -1,0 +1,49 @@
+{
+  "name": "act",
+  "version": "0.0.0",
+  "dependencies": {
+    "tool-browser": "git+http://gitlab.futunn.com/webpackage/tool-browser.git#1.5.0",
+    "tool-pvuv": "git+http://gitlab.futunn.com/webpackage/tool-pvuv.git#1.0.1",
+    "tool-stat": "git+http://gitlab.futunn.com/webpackage/tool-stat.git#1.1.8"
+  },
+  "devDependencies": {
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-preset-es2015": "^6.18.0",
+    "css-loader": "^0.25.0",
+    "csswring": "^3.0.4",
+    "extend": "^3.0.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "futu-gulp-rev": "git+http://gitlab.futunn.com/webpackage/futu-gulp-rev.git#1.0.7",
+    "gulp": "^3.8.10",
+    "gulp-clean": "^0.3.2",
+    "gulp-imagemin": "^2.4.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-postcss": "^5.1.6",
+    "gulp-replace": "^0.5.0",
+    "gulp-rev-hash": "0.0.2",
+    "gulp-toor": "^0.2.0",
+    "gulp-util": "^3.0.8",
+    "html-webpack-plugin": "^2.26.0",
+    "http-server": "^0.9.0",
+    "imagemin-pngquant": "^4.2.2",
+    "img-loader": "^1.3.1",
+    "postcss": "^5.2.11",
+    "postcss-import": "^5.2.2",
+    "resolve-url-loader": "^1.6.1",
+    "run-sequence": "^1.1.5",
+    "style-loader": "^0.13.1",
+    "text-loader": "0.0.1",
+    "underscore": "^1.8.3",
+    "url-loader": "^0.5.7",
+    "vinyl-named-with-path": "^1.0.0",
+    "webpack": "^1.12.14",
+    "webpack-stream": "^3.1.0"
+  },
+  "scripts": {
+    "start": "http-server ./web/ -a localhost -p 8000 -c-1 -o"
+  },
+  "author": "",
+  "license": "ISC"
+}
