@@ -16,6 +16,9 @@ webpack 1.x 提供的压缩插件`webpack.optimize.UglifyJsPlugin`是不能压�
 ###### 1. 分析bundle的一些工具，也是官网的推荐
 - [webpack-chart](https://alexkuz.github.io/webpack-chart/): webpack 数据交互饼图
 - [webpack-visualizer](https://chrisbateman.github.io/webpack-visualizer/): 可视化并分析你的 bundle，检查哪些模块占用空间，哪些可能是重复使用的。
+- HMR和热加载
+    - [webpack-dev-server](http://www.cnblogs.com/penghuwan/p/6941616.html)
+    - [webpack-dev-server官方文档，错误少，翻译的总容易带偏](https://webpack.js.org/configuration/dev-server/#devserver)
 
 ## 优化
 - [Webpack 打包优化之速度篇优化](http://web.jobbole.com/92273/)
