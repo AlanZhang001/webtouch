@@ -72,6 +72,89 @@ output:{
 ```
 在webpack注入css至页面中时，会在图片资源的前面加上publicPath字段，以便于页面正确找到图片资源。
 
+#### 5. js中引用.css文件，压缩后-webkit-,-moz-等前缀消失的问题
+
+问题出现的情况是这样：
+
+(1). js中引用css文件，通过webpack的loader处理后，页面加载css的时候会注入到页面中来：
+
+```javascirpt
+require('a.css');
+```
+
+(2). css的内容因为用到了不太兼容的属性，所以加了浏览器前缀：
+```css
+.list li{
+    width: 1%;
+    -moz-box-flex: 1;
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    text-align: center;
+    color: #121313;
+}
+```
+
+(3). 使用webpack1.x 做打包压缩
+```javascript
+{
+    module: {
+        loaders: [{
+            test: /\.html$/,
+            loader: 'text'
+        }, {
+            test: /\.css$/,
+            exclude: "./node_modules",
+            loader: 'style-loader!css-loader'
+        }, {
+            test: /\.js?$/,
+            exclude: "./node_modules",
+            loader: 'babel-loader',
+            query: {
+                presets: ['es2015']
+            }
+        }]
+    },
+    plugins: [
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                drop_console: true,
+                warnings:false
+            }
+        }),
+    ]
+}
+```
+
+(4). 加入到浏览中的css结果是这样,加入的浏览器前缀头部被去掉了
+
+```css
+.list li{
+    width: 1%;
+    box-flex: 1;
+    text-align: center;
+    color: #121313;
+}
+```
+
+**问题分析：**
+
+- webpack.optimize.UglifyJsPlugin 处理压缩的时候，默认是开启minimize的
+- 在css-loader 处理css的时候，webpack会默认给css-loader压缩的参数
+- css-loader会使用cssnano进行压缩，而cssnano会使用到autoprefixer进行无关前缀的清理,最终导致css的前缀丢失
+
+**解决办法：**
+
+方法1：loader中去掉autoprefixer的处理
+```
+{
+    test: /\.css$/,
+    exclude: "./node_modules",
+    loader: 'style-loader!css-loader?minimize&-autoprefixer'
+}
+```
+
+方法2：直接换成webpack2及uglifyjs-webpack-plugin做打包压缩
+
 ## 工具相关
 
 ###### 1. 分析bundle的一些工具，也是官网的推荐
