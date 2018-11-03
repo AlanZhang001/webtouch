@@ -12,7 +12,7 @@
 
 ######  1. 当我们commit之后突然发现漏掉了一个文件, 这个时候不可能对一个文件再进行commit一次, 这样做就显得很多余, 而如果版本回退之前再添加也比较麻烦. 这个时候就可以使用这个amend命令.如下:
 
-```
+```shell
 $ git commit -m "版本1.5开发代码"
  
 # 正当你松了一口气的时候发现配置文件忘记修改了, 你赶紧修改,并适合用add到暂存区
@@ -37,7 +37,7 @@ $ git commit --amend
 然后再次git status查看状态，file1文件不再显示状态。
 
 ###### 3. 更新submodule的URL
-```
+```shell
 - 更新 .gitsubmodule中对应submodule的条目URL
 
 - 更新 .git/config 中对应submodule的条目的URL
@@ -58,7 +58,7 @@ $ git commit --amend
     + 不能对已经push的提交做修改comment
 
 ##### 6. 删除分支
-```
+```shell
 # 删除远程分支
 git push -d origin hotfix/xxxxxxx
 #删除本地分支，这个只能删除本地分支，要先删除远程再删除本地
@@ -69,7 +69,7 @@ git branch -d -r branchnam
 
 ##### 7. 切换分支
 
-```
+```shell
 - 且回上一个使用过的分支:git checkout -
 ```
 
@@ -81,7 +81,7 @@ git branch -d -r branchnam
 
 - 方法1：使用ssh 的方式并设置key
 - 方法2：
-```
+```shell
 # 查看项目是用http还是git协议进行的下载
 # 比如会输出：origin  https://github.com/AlanZhang001/webtouch.git (fetch)
 git remote -v
@@ -89,6 +89,24 @@ git remote -v
 # 2. 运行如下命令即可：
 git config --global credential.helper store
 ```
+
+##### 10. git remote 
+
+```shell
+# 显示git 项目的url信息
+git remote -v
+
+# 显示当前项目的所有信息,比git branch -at更加详细
+git remote show origin
+
+# 显示所有的远程分支及其最新commitid
+git ls-remote
+```
+
+##### 11. origin 是什么？
+“origin” 并无特殊含义。
+
+远程仓库名字 “origin” 与分支名字 “master” 一样，在 Git 中并没有任何特别的含义一样。 同时 “master” 是当你运行 git init 时默认的起始分支名字，原因仅仅是它的广泛使用，“origin” 是当你运行 git clone 时默认的远程仓库名字。
 
 ## 学习参考链接
 - 常用 Git 命令清单<http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html>
