@@ -55,6 +55,7 @@ npm prune: 列出在node_modules中存在但是为在package.json中保存的npm
 npm home $package: 打开某个包的主页
 npm home: 直接在某个项目下运行npm home即打开项目主页
 npm install --only=dev:只安装devDependencies中的依赖
+npm owner ls tool-callapp：列出当前等发布包的账号
 ```
 
 ###### 7. env
