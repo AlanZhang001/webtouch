@@ -108,6 +108,13 @@ git ls-remote
 
 远程仓库名字 “origin” 与分支名字 “master” 一样，在 Git 中并没有任何特别的含义一样。 同时 “master” 是当你运行 git init 时默认的起始分支名字，原因仅仅是它的广泛使用，“origin” 是当你运行 git clone 时默认的远程仓库名字。
 
+
+## 待搞清楚的事情
+
+- git rebase 和git merge的区别
+- git pull --rebase后面的--rebase有什么特别的作用
+- git reflog
+
 ## 学习参考链接
 - 常用 Git 命令清单<http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html>
 - Git版本控制软件结合GitHub从入门到精通常用命令学习手册<http://www.ihref.com/read-16369.html>
