@@ -108,6 +108,29 @@ git ls-remote
 
 远程仓库名字 “origin” 与分支名字 “master” 一样，在 Git 中并没有任何特别的含义一样。 同时 “master” 是当你运行 git init 时默认的起始分支名字，原因仅仅是它的广泛使用，“origin” 是当你运行 git clone 时默认的远程仓库名字。
 
+##### 12. git log
+
+```shell
+# 显示提交说明、提交者以及提交日期，还会显示这每次提交实际修改的内容。
+git log -p filename
+
+# git log 输出参数：
+git log --author=“Alex Kras” ——只显示某个用户的提交任务
+git log --name-only ——只显示变更文件的名称
+git log --oneline——将提交信息压缩到一行显示
+git log --graph ——显示所有提交的依赖树
+```
+
+##### 13. 查看其它分支的文件
+
+```shell
+# 查看其他分支上的文件而无需切换到那个分支
+git show some-branch-name:some-file-name.js
+# 查看另一个分支上文件与当前分支上文件的差异
+git diff some-branch some-filename.js
+# 查看diff时，不显示空格变更
+git diff -w
+```
 
 ## 待搞清楚的事情
 
@@ -116,6 +139,7 @@ git ls-remote
 - git reflog
 
 ## 学习参考链接
+- 日常使用 Git 的 19 个建议<https://juejin.im/entry/56737bca00b0bf37ccb00ebe>
 - 常用 Git 命令清单<http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html>
 - [github设置添加SSH](https://www.cnblogs.com/ayseeing/p/3572582.html)
 
