@@ -1,6 +1,6 @@
 ## git笔记
 
-## git 仓库图
+## git 仓库结构图
 
 ![git](asserts/git1.png)
 
