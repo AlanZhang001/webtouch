@@ -133,11 +133,24 @@ git diff -w
 
 ##### 14. git reabse 和git merge的区别
 
+- git merge: 分支提交
+    - 意思是将2个分支的最近一次提交合并，并做一次提交；因此会多一次合并提交的 commit 记录
+- git rebase: 变基；
+    - 意思是变换基础分支；在master 上做 git rebase branch-b,其实是将branch-b 中相对于master 的改动，以master为基础分支再应用一次。因此不会产生 都一次的合并commit
 
+对于大项目而言，git merge 会将分支结构图变得复杂（多一次提交信息），因此，推荐使用 git reabse
+
+git merge：
+
+![merge](./asserts/merge.png)
+
+git rebase
+
+![rebase](./asserts/rebase.png)
 
 ## 待搞清楚的事情
 
-- git rebase 和git merge的区别
+ 
 - git pull --rebase后面的--rebase有什么特别的作用
 - git reflog的用处
 
