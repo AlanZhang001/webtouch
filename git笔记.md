@@ -136,7 +136,7 @@ git diff -w
 
 - git rebase 和git merge的区别
 - git pull --rebase后面的--rebase有什么特别的作用
-- git reflog
+- git reflog的用处
 
 ## 学习参考链接
 - 日常使用 Git 的 19 个建议<https://juejin.im/entry/56737bca00b0bf37ccb00ebe>
