@@ -150,12 +150,10 @@ git rebase
 
 ## 待搞清楚的事情
 
- 
 - git pull --rebase后面的--rebase有什么特别的作用
 - git reflog的用处
 
 ## 学习参考链接
 - 日常使用 Git 的 19 个建议<https://juejin.im/entry/56737bca00b0bf37ccb00ebe>
-- 常用 Git 命令清单<http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html>
 - [github设置添加SSH](https://www.cnblogs.com/ayseeing/p/3572582.html)
 
