@@ -14,7 +14,6 @@
 
 ```shell
 $ git commit -m "版本1.5开发代码"
- 
 # 正当你松了一口气的时候发现配置文件忘记修改了, 你赶紧修改,并适合用add到暂存区
 $ git add project.property
 $ git commit --amend        
