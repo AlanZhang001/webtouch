@@ -132,6 +132,10 @@ git diff some-branch some-filename.js
 git diff -w
 ```
 
+##### 14. git reabse 和git merge的区别
+
+
+
 ## 待搞清楚的事情
 
 - git rebase 和git merge的区别
