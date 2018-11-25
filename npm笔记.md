@@ -65,6 +65,21 @@ npm owner ls tool-callapp：列出当前等发布包的账号
 
 ![asserts/npmscripts.png](asserts/npmscripts.png)
 
+###### 9. `.npmrc`文件
+- 运行npm命令时，npm会从这几个地方读取命令配置：命令行参数，系统环境变量，.npmrc文件。
+- .npmrc文件中可以描述着npm的一些配置，比如registry，详细的配置内容见：https://www.npmjs.com.cn/misc/config/
+- 查找.npmrc配置的时候，顺序及优先级是这样的：
+    + `/path/to/my/project/.npmrc`：项目的.npmrc 配置，需要和package.josn 以及node_modules属于同一级目录。
+    + `~/.npmrc`：用户目录中的.npmrc配置
+    + `$PREFIX/etc/npmrc`: npm 的全局配置：
+        * 运行`npm config get prefix`就可以知道
+        * win系统的路径基础部分是：`%APPDATA%/npm/`
+        * mac系统下路径基础部分是：`/usr/local/`
+    + `/path/to/npm/npmrc`: npm 安装目录的配置
+        * 运行`npm root -g`即可查到`/path/to`对应的位置，
+
+
+
 ## 学习参考链接
 
 - package.json 字段说明: <http://mujiang.info/translation/npmjs/files/package.json.html>
