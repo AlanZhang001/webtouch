@@ -10,11 +10,13 @@
 ![nrm](asserts/nrm.png)
 
 
-**concurrently**:可以在npm scripts中执行多进程。
+**concurrently**:可以在npm scripts中执行多进程。同时执行多个命令二不用开多个控制台
 
 在日常开发我们经常会遇到一个用于静态资源的服务器，一个是 业务的 Web 服务器，我们也可以单独拆分。 即分开成两个命令启动。这个适合使用 concurrently 就非常方便了。
 
 ![nrm](asserts/concurrently.jpg)
+
+**npm-run-all**：可以以串行或者并行的方式执行多个命令；功能上比concurrently多一些。concurrently强调执行多个进程，npm-run-all的功能在于可以串行或者并行执行。
 
 **cross-env**:跨平台地设置及使用环境变量
 
