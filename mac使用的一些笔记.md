@@ -164,6 +164,14 @@ echo "alias ll=\"ls -al\"">>~/.bash_profile
 ```
 # 1.安装nginx
 brew install nginx
+# 2.添加虚拟主机
+vi  /usr/local/etc/nginx/nginx.conf
+# 在最底部加上配置
+include conf.d/*.conf;
+# 执行生效
+sudo nginx -c /usr/local/etc/nginx/nginx.conf
 ```
+/usr/local/etc/nginx/conf.d 下的.conf 配置文件即可生效
+
 #### 2. 安装php
 mac可能只带php，但是很多模块并没有安装，所以建议卸载自带php，然后自行安装
