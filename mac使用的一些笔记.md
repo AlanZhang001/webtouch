@@ -104,6 +104,14 @@ brew cask install sketch
 # virtualbox有可能会要求特别的权限，会打开一个GUI界面，要点允许/通过/同意之类的，点完后会安装失败
 # 需要再运行一次，就安装成功了
 brew cask install virtualbox
+
+# 替换mac的搜索功能 Command+space
+# 安装以后需要先改变原有的搜索的快捷键然后再设置alfred的快键键
+brew cask install alfred
+# 安装快捷键提示功能：CheatSheet,安装后长按Command
+brew cask install cheatsheet 
+# 安装截图工具
+brew cask install jietu
 ```
 
 ## 一些其他设置
@@ -144,10 +152,15 @@ echo "alias ll=\"ls -al\"">>~/.bash_profile
 ```
 可以直接编辑~/.bash_profile文件进行设置
 
-#### 5. 安装nginx
+#### 5. 开启适用于 Force Touch 触控板的“三指拖移”
+<https://support.apple.com/zh-cn/HT204609>
+
+## 配置nginx，php
+
+#### 1. 安装nginx
 ```
 # 1.安装nginx
 brew install nginx
 ```
-#### 6. 安装php
+#### 2. 安装php
 mac可能只带php，但是很多模块并没有安装，所以建议卸载自带php，然后自行安装
