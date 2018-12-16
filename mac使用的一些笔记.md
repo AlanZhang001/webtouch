@@ -34,6 +34,9 @@ Command–上箭头：打开包含当前文件夹的文件夹。
 ```
 
 #### 2. brew 和brew cask的区别
+![asserts/mac/brew.png](./asserts/mac/brew1.png)
+
+![./asserts/mac/path.png](./asserts/mac/path.png)
 
 #### 3. 安装nvm
 
