@@ -5,7 +5,7 @@
 #### 1. 如何打开共享磁盘
 打开finder，快捷键 com + k，输入`smb://databox.oa.com`
 
-### 2. 一些用到的快捷键，少问人
+### 2. 一些用到的快捷键，少问人
 
 ```shell
 fn+F11:快速显示桌面
@@ -17,7 +17,7 @@ Command-G：再次查找：查找之前所找到项目出现的下一个位置�
 Shift-Command-G：要查找出现的上一个位置。
 ```
 
-### 3.finder中的一些快捷键
+### 3.finder中的一些快捷键
 ```
 Command + Shift + .(⌘⇧.) ：在 Finder 中显示隐藏的文件
 Command–左中括号 ([)：前往上一文件夹。
@@ -106,7 +106,7 @@ brew cask install sketch
 brew cask install virtualbox
 ```
 
-## 一些其他设置
+## 一些其他设置
 
 #### 1.允许使用任何来源app（主要用于破解软件）
 ```
@@ -124,7 +124,7 @@ sudo spctl --master-disable
 # 1. 安装iterm2替换终端
 brew cask install iterm2
 
-# 2. 配置zsh，美化命令行的输出
+# 2. 配置zsh，美化命令行的输出
 chsh -s /bin/zsh
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
@@ -137,12 +137,12 @@ brew install autojump
 echo "[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh">>~/.zshrc
 ```
 
-#### 4. 设置alias别名，少敲一些字母
+#### 4. 设置alias别名，少敲一些字母
 ```
 # 设置ll别名
 echo "alias ll=\"ls -al\"">>~/.bash_profile
 ```
-可以直接编辑~/.bash_profile文件进行设置
+可以直接编辑~/.bash_profile文件进行设置
 
 #### 5. 安装nginx
 ```
