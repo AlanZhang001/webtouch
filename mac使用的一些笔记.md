@@ -27,6 +27,8 @@ Command–上箭头：打开包含当前文件夹的文件夹。
 
 ## brew
 
+设置源及重置：<https://blog.csdn.net/Boyqicheng/article/details/80809983>
+
 #### 1. 安装
 
 ```shell
