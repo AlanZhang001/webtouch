@@ -31,4 +31,11 @@ pbcopy < .bash_profile
 # 列出目前所有的正在内存当中的程序
 ps aux
 
+#####  lsof
+
+```
+# 列出当前的端口占用情况
+# node上可能会存在后端占用了某个端口，但是控制台退出了，进程未消亡，再次开发node应用程序的时候，会提示端口被占用：Error: listen EADDRINUSE :::4000
+#（port替换成端口号，比如6379）可以查看该端口被什么程序占用
+lsof -i tcp:port
 ```
