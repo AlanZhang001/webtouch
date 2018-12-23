@@ -30,8 +30,9 @@ pbcopy < .bash_profile
 ```
 # 列出目前所有的正在内存当中的程序
 ps aux
+```
 
-#####  lsof
+##### lsof
 
 ```
 # 列出当前的端口占用情况
