@@ -144,7 +144,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 
 echo "source ~/.bash_profile">>~/.zshrc
 
-# 3.安装autojump，点击控制台上输出的的目录或则文件名即可跳转至目录或打开文件
+# 3.安装autojump，点击控制台上输出的的目录或则文件名即可跳转至目录或打开文件
 brew install autojump
 
 echo "[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh">>~/.zshrc
@@ -169,11 +169,11 @@ echo "alias ll=\"ls -al\"">>~/.bash_profile
 ```
 # 1.安装nginx
 brew install nginx
-# 2.添加虚拟主机
+# 2.添加虚拟主机
 vi  /usr/local/etc/nginx/nginx.conf
 # 在最底部加上配置
 include conf.d/*.conf;
-# 执行生效
+# 执行生效
 sudo nginx -c /usr/local/etc/nginx/nginx.conf
 ```
 /usr/local/etc/nginx/conf.d 下的.conf 配置文件即可生效
