@@ -40,3 +40,7 @@ ps aux
 #（port替换成端口号，比如6379）可以查看该端口被什么程序占用
 lsof -i tcp:port
 ```
+
+## 参考
+
+- linux命令搜索引擎<https://wangchujiang.com/linux-command/>
