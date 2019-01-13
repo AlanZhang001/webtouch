@@ -15,3 +15,7 @@ docker pull alanzhang001/base:1.0.0
 # 启动centos
 docker container run -it alanzhang001/base:1.0.0  /bin/bash
 ```
+
+## 参考
+centeos上安装mysql：<https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-centos-7>
+告诉你为何以及如何搭建一个私有的npm仓库:<https://www.colabug.com/2731929.html>
