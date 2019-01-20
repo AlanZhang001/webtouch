@@ -156,4 +156,5 @@ git rebase
 ## 学习参考链接
 - 日常使用 Git 的 19 个建议<https://juejin.im/entry/56737bca00b0bf37ccb00ebe>
 - [github设置添加SSH](https://www.cnblogs.com/ayseeing/p/3572582.html)
+- [git bisect 二分查找](http://www.ruanyifeng.com/blog/2018/12/git-bisect.html)
 
