@@ -80,7 +80,9 @@ npm owner ls tool-callapp：列出当前等发布包的账号
     + `/path/to/npm/npmrc`: npm 安装目录的配置
         * 运行`npm root -g`即可查到`/path/to`对应的位置，
 
+###### 10. npm ci 与npm install 区别
 
+![](./asserts/npmci.png)
 
 ## 学习参考链接
 
