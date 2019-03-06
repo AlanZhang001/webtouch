@@ -82,6 +82,8 @@ npm owner ls tool-callapp：列出当前等发布包的账号
 
 ###### 10. npm ci 与npm install 区别
 
+- npm ci从npm@5.7.1开始支持
+
 ![](./asserts/npmci.png)
 
 ## 学习参考链接
