@@ -160,7 +160,7 @@ echo "alias ll=\"ls -al\"">>~/.bash_profile
 #### 5. 开启适用于 Force Touch 触控板的“三指拖移”
 <https://support.apple.com/zh-cn/HT204609>
 
-#### 6. 破解offic
+#### 6. 破解office
 <https://www.jianshu.com/p/2172835cfb17>
 
 ## 配置nginx，php
