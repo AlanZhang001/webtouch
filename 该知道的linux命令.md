@@ -30,6 +30,11 @@ pbcopy < .bash_profile
 ```
 # 列出目前所有的正在内存当中的程序
 ps aux
+
+# 查看nginx的配置文件目录
+ps aux | grep nginx
+# 查看配置文件是否有效
+nginx -t
 ```
 
 ##### lsof
