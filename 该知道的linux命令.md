@@ -43,7 +43,8 @@ nginx -t
 # 列出当前的端口占用情况
 # node上可能会存在后端占用了某个端口，但是控制台退出了，进程未消亡，再次开发node应用程序的时候，会提示端口被占用：Error: listen EADDRINUSE :::4000
 #（port替换成端口号，比如6379）可以查看该端口被什么程序占用
-lsof -i tcp:port
+sudo lsof -i tcp:port
+sudo lsof -i :port
 ```
 
 ##### kill，pkill
@@ -54,6 +55,17 @@ sudo kill -9 某个pid
 # 根据应用程序的名称杀掉进程
 pkill httpd
 ```
+
+##### nohup
+```
+# nohup some_command &
+# 让进程在后台运行，即便控制台关闭也不受影响
+# 一般我们可在结尾加上"&"来将命令同时放入后台运行
+# 运行结果默认输出在单前目录 的`nohup.out'文件中
+nohup ping www.ibm.com &
+```
+
+
 
 ## 参考
 
