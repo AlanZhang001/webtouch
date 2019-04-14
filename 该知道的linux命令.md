@@ -46,6 +46,15 @@ nginx -t
 lsof -i tcp:port
 ```
 
+##### kill，pkill
+杀掉进程
+```
+# 根据pid来结束某个进程，-9表示无条件终止进程
+sudo kill -9 某个pid
+# 根据应用程序的名称杀掉进程
+pkill httpd
+```
+
 ## 参考
 
 - linux命令搜索引擎<https://wangchujiang.com/linux-command/>
