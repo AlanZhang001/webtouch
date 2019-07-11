@@ -155,7 +155,7 @@ require('a.css');
 
 方法2：直接换成webpack2及uglifyjs-webpack-plugin做打包压缩
 
-#### 背诵并默写全文的版本关系
+#### 6. 背诵并默写全文的版本关系
 
 - webpack 3-
 	- 不需要webpack-cli
