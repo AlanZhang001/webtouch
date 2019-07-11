@@ -155,7 +155,29 @@ require('a.css');
 
 方法2：直接换成webpack2及uglifyjs-webpack-plugin做打包压缩
 
-#### 6. 背诵并默写全文的版本关系
+#### 7. loader的问题
+
+从 webpack 2 开始，loader的配置需要使用全名，例如 example-loader。然而，如果你确实想省略 -loader，也就是说只使用 example，则可以使用此选项来实现：
+
+webpack.config.js
+```js
+//  配置loader后缀
+module.exports = {
+  //...
+  resolveLoader: {
+    moduleExtensions: ['-loader']
+  }
+};
+
+// 或者配置loader 的alias
+resolveLoader: {
+    alias: {
+	'text': 'text-loader'
+    }
+},
+```
+
+## 背诵并默写全文的版本关系
 
 - webpack 3-
 	- 不需要webpack-cli
