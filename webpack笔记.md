@@ -155,6 +155,24 @@ require('a.css');
 
 方法2：直接换成webpack2及uglifyjs-webpack-plugin做打包压缩
 
+#### 背诵并默写全文的版本关系
+
+- webpack 3-
+	- 不需要webpack-cli
+	- vue-loader 14-
+	- 不需要VueLoaderPlugin
+	- 使用ExtractTextPlugin
+
+- webpack 4+
+	- 需要webpack-cli
+	- vue-loader 15+
+	- 需要VueLoadderPlugin，需要指定extractCss:true
+	- 使用MiniCssExtractPlugin
+
+
+Babel 6- 独立的模块，对应的babel-loader是7.x
+Babel 7+ 全部收归到@babel namespace下，对应的babel-loader是8.x
+
 ## 工具相关
 
 ###### 1. 分析bundle的一些工具，也是官网的推荐
