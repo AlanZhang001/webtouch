@@ -155,6 +155,36 @@ require('a.css');
 
 方法2：直接换成webpack2及uglifyjs-webpack-plugin做打包压缩
 
+#### 6. 打包后的文件在严格模式下报错的问题
+
+es 模块通过import export 导入导出，通过babel做降级打包时，默认会在模块最前加上 'use strict',如果模块中引用或是用了 非严格模式才能使用的语法，比如argument.callee,argument.caller,这会导致报错。在babel的配置中加上`"sourceType": "script"`即可
+
+.babelrc
+```js
+{
+    "presets": [
+    	...
+        [
+            "@babel/preset-env",
+            {
+                "useBuiltIns": "usage",
+                "debug": false,
+                "modules": "commonjs",
+                "corejs": "2"
+            }
+        ]
+    ],
+    "plugins": [
+        "@babel/plugin-syntax-dynamic-import",
+        "@babel/plugin-transform-runtime" 
+	...
+    ],
+    // files are not in strict mode
+    "sourceType": "script"
+}
+```
+
+
 #### 7. loader的问题
 
 从 webpack 2 开始，loader的配置需要使用全名，例如 example-loader。然而，如果你确实想省略 -loader，也就是说只使用 example，则可以使用此选项来实现：
