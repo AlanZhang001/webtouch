@@ -171,6 +171,7 @@ require('a.css');
 
 
 Babel 6- 独立的模块，对应的babel-loader是7.x
+
 Babel 7+ 全部收归到@babel namespace下，对应的babel-loader是8.x
 
 ## 工具相关
