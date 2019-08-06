@@ -207,6 +207,59 @@ resolveLoader: {
 },
 ```
 
+#### 8. vue-loader 的锅
+
+webpack3 对饮的vue-loader如果是 14.x，如果需要对vue文件中的代码做babel处理，要单独对vue-loader做babel的配置。
+
+```js
+ {
+	test: /\.vue$/,
+	include: [
+	    path.resolve(__dirname,'web/scripts/app'),
+	    path.resolve(__dirname,'node_modules/@futuweb')
+	],
+	loader: 'vue-loader',
+	options: {
+	    loaders: {
+		js: [{
+		    loader:'babel-loader',
+		    options:{
+		    	// babel配置可以直接写在这里
+		    }
+		}]
+	    }
+	}
+}
+```
+
+同时，babel的配置需要以babel.config.js 的方式存在。或者直接写在webpack的options参数中
+
+babel.config.js
+```js
+module.exports = function (api) {
+    api.cache(true);
+    return {
+        "presets": [
+            [
+                "@babel/preset-env",
+                {
+                    "targets": {
+                        "browsers": "ie >= 9"
+                    } 
+                }
+            ],
+        ],
+    
+        "plugins": [
+            ["@babel/plugin-proposal-object-rest-spread", { "loose": true, "useBuiltIns": true }],
+            "@babel/plugin-syntax-dynamic-import"
+        ]
+    };
+};
+```
+
+
+
 ## 背诵并默写全文的版本关系
 
 - webpack 3-
@@ -225,6 +278,8 @@ resolveLoader: {
 Babel 6- 独立的模块，对应的babel-loader是7.x
 
 Babel 7+ 全部收归到@babel namespace下，对应的babel-loader是8.x
+
+
 
 ## 工具相关
 
