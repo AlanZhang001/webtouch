@@ -12,7 +12,7 @@
 - 解决办法：
     - 防止被偷cookie：httponly
     - 对于反射性的漏洞，Chrome已经对参数进行过滤了,防止XSS攻击(其实就是内置X-XSS-Protection)
-    - 添加响应头：X-XSS-Protection
+    - 添加响应头：X-XSS-Protection(只可以防御反射型)
         - 开启这个功能后，当浏览器检测到跨站脚本攻击（XSS）时，浏览器将对页面做清理或直接阻止整个页面的加载。
         - IE、Chrome 和 Safari 都内置了这个模块。edge 和火狐没有内置这个模块。
         - 在 IE 上它叫 XSS Filter，在 Chrome 上它叫 XSS Auditor（不过[chrome准备弃用XSS Auditor](https://linux.cn/article-11112-1.html)）。
