@@ -31,11 +31,23 @@
             - 更多[示例](https://infosec.mozilla.org/guidelines/web_security#examples-4)
     - 特殊字符输出时转义（因为内容可能在多终端显示，所以建议在后端输出时转义而不是输入时）
         - < 转成 &lt; > 转成 &gt; & 转成 &amp; " 转成 &quot; ' 转成 &#39
-        - 这里需要搞明白，转义 和 escap 和 encodeURI 、encodeURIComponent的区别
+        - ? 这里需要搞明白，转义 和 escap 和 encodeURI 、encodeURIComponent的区别
 
 - csrf
 - cdn劫持
-- a标签跳转时 opener.location劫持
+
+###### a标签跳转时 opener.location.href劫持
+- 定义：当带有target="_blank"的a标签打开的新标签页面，在新标签页中可以通过`window.opener.location.href = 'https://www.hack.com'`能将原页面跳转到恶意页面
+- 解决办法：
+    - 1. 在 <a> 标签的 rel 属性中指定 rel="noopener",这种方法IE上基本不支持
+    - 2. 在 <a> 标签的 rel 属性中指定 rel="noreferrer",这种方法IE10及以下不支持，同时设置noreferrer，也会导致新页面无法通过document.referrer 获取到源信息。为了解决
+    这个劫持漏洞，一般会同时设置rel="noreferrer noopener"。
+    - 3. 如果需要照顾老旧浏览器，可以通过js打开页面：`var newTab = window.open(); newTab.opener = null; newTab.location = targetUrl`
+- 延伸：rel="noopener" 对性能优化的帮助
+    - 官方文档在介绍[a标签的target属性](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/a)时表明，通过 target="_blank"打开新页面时，会在原页面所在的进程中打开新页面，如果新页面在执行耗时js，原页面的性能会受到影响。
+    - 通过设置rel="noopener"，可以避免这种性能问题。
+    - 原文：`Linking to another page using target="_blank" will run the new page on the same process as your page. If the new page is executing expensive JS, your page's performance may suffer. To avoid this use rel=noopener.`
+
 - iframe 被恶意嵌套问题
 - 302跳转劫持问题
 - 第三方资源js 本身存在安全问题
@@ -45,7 +57,7 @@
 - web前端针对 法律法规存在的文案问题
 - 公开的信息被恶意批量爬取，比如有效资源，联系电话：见https://www.dianping.com/shop/57504830
 
-- ？ iframe 沙箱
+- ? iframe 沙箱
 #### 后端
 
 - SQL 注入： sqlmap，中国菜刀
