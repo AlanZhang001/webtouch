@@ -12,7 +12,7 @@
 - 解决办法：
     - 防止被偷cookie：httponly
     - 对于反射性的漏洞，Chrome已经对参数进行过滤了,防止XSS攻击(其实就是内置X-XSS-Protection)
-    - 添加响应头：X-XSS-Protection(只可以防御反射型)
+    - 添加响应头：X-XSS-Protection(只可以防御反射型)，其原理是检查url和dom中元素的相关性. 但这并不能完全防止反射型xss. 这里有个可供测试的链接,[XSS Test Page](http://www.enhanceie.com/test/xss/).
         - 开启这个功能后，当浏览器检测到跨站脚本攻击（XSS）时，浏览器将对页面做清理或直接阻止整个页面的加载。
         - IE、Chrome 和 Safari 都内置了这个模块。edge 和火狐没有内置这个模块。
         - 在 IE 上它叫 XSS Filter，在 Chrome 上它叫 XSS Auditor（不过[chrome准备弃用XSS Auditor](https://linux.cn/article-11112-1.html)）。
@@ -22,6 +22,8 @@
             - X-XSS-Protection : 1，启用 XSS 过滤，一般浏览器中都是默认开启。如果检测到跨站脚本攻击，浏览器将清除在页面上检测到的不安全的部分
             - X-XSS-Protection : 1; mode=block，如果检测到攻击，浏览器不会像上面的选项一样将不安全的部分删除，而是直接阻止整个页面的加载
             - X-XSS-Protection : 1; report=<reporting-uri>，如果检测到跨站脚本攻击，浏览器会清除在页面上检测到的不安全的部分，并使用report-uri的功能 POST 一个 XSS 警报。这个功能只有在 Chrome 中有效果，在 IE 中无效。
+        - 不同看法，有人认为X-XSS-Protection 最差的设置是X-XSS-Protection : 1，因为这可能造成 页面上的代码被误删除，攻击者恰巧可以利用这一漏洞来让页面不可运行。
+            - 文章：https://blog.innerht.ml/the-misunderstood-x-xss-protection/，乞丐版翻译：https://www.freebuf.com/articles/web/138769.html
     - csp：控制浏览器能够为指定的页面加载哪些资源
         - 浏览器支持性还可以，IE 6-9，12-13 不支持
         - [配置略复杂](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy)，看几个例子
