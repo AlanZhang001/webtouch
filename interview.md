@@ -49,7 +49,48 @@
     - 通过设置rel="noopener"，可以避免这种性能问题。
     - 原文：`Linking to another page using target="_blank" will run the new page on the same process as your page. If the new page is executing expensive JS, your page's performance may suffer. To avoid this use rel=noopener.`
 
-- iframe 被恶意嵌套问题
+###### iframe 被恶意嵌套问题
+- 定义: 这定义就比较明确了，恶意站点www.hack.com 通过iframe嵌入你的站点www.hehe.com
+- 危害:
+    - 仍然是点击劫持，恶意站点在iframe上覆盖一个透明的a标签，然后点击引导到恶意站点，用户认为是一个安全的站点跳转过来，因此很可能信任新的页面
+    - 收集用户信息，比如在恶意站点旁边或者上层显示登录注册的表单，引导用户在安全站点的账号密码信息
+- 解决办法：
+    - 1. 通过js处理：
+        - 方法：js 判断当前页面是否在顶层,如果自己的页面不在顶层，则认为被iframe嵌套引入，做跳转：`(window.top != window.self) && top.location.href = "yuor url"`;
+        - 存在的问题：恶意站点在通过iframe嵌入你的站点的时候，可以 让iframe嵌入的站点无法执行js。比如这样`<iframe sandbox="" src="https://www.hehe.com"></iframe>`。sandbox的具体使用见下节。或者 `<iframe sandbox=”allow-forms allow-same-origin allow-scripts”></iframe>`,这样，就可以保证js脚本的执行，但是禁止iframe里的javascript执行top.location.href= "xxx"；
+
+    - 2. 通过给页面设置`X-Frame-Options`响应头,来决定站点能被那些站点嵌入。IE8就开始支持了。设置 meta 标签是无效的。
+        - 一些配置
+            - `X-Frame-Options: deny`：不允许在 frame 中展示，即便外层页面和要嵌入的页面同域
+            - `X-Frame-Options: sameorigin`：外层页面如果和要嵌入的页面同域，则可以被嵌入
+            - `X-Frame-Options: allow-from https://www.a.com/`：表示运行在那个站点中被作为iframe嵌入，只能支持单域名，并且浏览器对这个`allow-from`的支持不是太好，chrome就不支持。
+        - 存在的问题：
+            - 1. allow-from支持不太好，且不支持设置多个域名
+            - 2. 这是一个非官方标准的响应头，只不过是较早实现，官方建议和CSP一同使用。
+
+    - 3. CSP大法
+> 普通跨域的情况，iframe 是获取不到 `top.location.href`，但是可以设置`top.location.href`。
+
+###### iframe 沙箱
+
+- 定义：sandbox就是用来给指定iframe设置一个沙盒模型，限制iframe 嵌入页面的权限。（IE10才开始支持）。基本用法就是`<iframe sandbox="xx" src="xxx"></iframe>`
+- iframe sandbox几个值的情况
+    - ""： 空值，表示启用所有限制，限制如下：
+        1. script脚本不能执行
+        2. 不能发送ajax请求
+        3. 不能使用本地存储，即localStorage,cookie等
+        4. 不能创建新的弹窗和window
+        5. 不能发送表单
+        6. 不能加载额外插件比如flash等
+    - allow-forms:允许进行提交表单
+    - allow-scripts:运行执行脚本
+    - allow-same-origin:允许同域请求,比如ajax,storage
+    - allow-top-navigation:允许iframe能够主导window.top进行页面跳转
+    - allow-popups:允许iframe中弹出新窗口,比如,window.open,target="_blank"
+    - allow-pointer-lock:在iframe中可以锁定鼠标，主要和鼠标锁定有关（没太懂这个含义）
+
+
+
 - 302跳转劫持问题
 - 第三方资源js 本身存在安全问题
 - 第三方css偷取密码问题
@@ -58,7 +99,6 @@
 - web前端针对 法律法规存在的文案问题
 - 公开的信息被恶意批量爬取，比如有效资源，联系电话：见https://www.dianping.com/shop/57504830
 
-- ? iframe 沙箱
 #### 后端
 
 - SQL 注入： sqlmap，中国菜刀
