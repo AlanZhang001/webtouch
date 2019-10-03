@@ -69,6 +69,14 @@
             - 2. 这是一个非官方标准的响应头，只不过是较早实现，官方建议和CSP一同使用。
 
     - 3. CSP大法
+        -  CSP中的frame-ancestors 指令指定了一个可以包含`<frame>，<iframe>，<object>，<embed>`等元素的有效父级,意思就是设置允许被哪些域进行嵌入
+        - IE14之前除了13都不支持`frame-ancestors`,因此需要结合`X-Frame-Options`一起使用。
+        - frame-ancestors策略可以设置一个或多个源，而且指定源的时候可以使用通配符，例如`Content-Security-Policy: frame-ancestors http://*.hehe.com`。
+        - 几个demo
+            - `Content-Security-Policy: frame-ancestors 'none';`其作用类似于X-Frame-Options: DENY
+            - `Content-Security-Policy: frame-ancestors 'self';`其作用类似于X-Frame-Options: SAMEORIGIN
+            - `Content-Security-Policy: frame-ancestors https://*.futunn.com  https://*.futu5.com;`表示允许被futunn和futu5下的域名进行嵌入
+
 > 普通跨域的情况，iframe 是获取不到 `top.location.href`，但是可以设置`top.location.href`。
 
 ###### iframe 沙箱
