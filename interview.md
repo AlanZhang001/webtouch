@@ -24,9 +24,9 @@
             - X-XSS-Protection : 1; report=<reporting-uri>，如果检测到跨站脚本攻击，浏览器会清除在页面上检测到的不安全的部分，并使用report-uri的功能 POST 一个 XSS 警报。这个功能只有在 Chrome 中有效果，在 IE 中无效。
         - 不同看法，有人认为X-XSS-Protection 最差的设置是X-XSS-Protection : 1，因为这可能造成 页面上的代码被误删除，攻击者恰巧可以利用这一漏洞来让页面不可运行。
             - 文章：https://blog.innerht.ml/the-misunderstood-x-xss-protection/，乞丐版翻译：https://www.freebuf.com/articles/web/138769.html
-    - csp：控制浏览器能够为指定的页面加载哪些资源
+    - csp：控制浏览器能够为指定的页面加载哪些资源https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy
         - 浏览器支持性还可以，IE 6-9，12-13 不支持
-        - [配置略复杂](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Security-Policy)，看几个例子
+        - [配置略复杂]()，看几个例子
             - Content-Security-Policy: default-src https:禁用不安全的内联/动态执行, 只允许通过 https加载这些资源 (images, fonts, scripts, etc.)
             - Content-Security-Policy: default-src 'self': 要所有内容均来自站点的同一个源 (不包括其子域名)
             - Content-Security-Policy: default-src 'self' *.futunn.com:允许内容来自信任的域名及其子域名 (域名不必须与CSP设置所在的域名相同)
@@ -106,6 +106,7 @@
 - http明文传输本身存在问题
 - web前端针对 法律法规存在的文案问题
 - 公开的信息被恶意批量爬取，比如有效资源，联系电话：见https://www.dianping.com/shop/57504830
+- 拖拽劫持
 
 #### 后端
 
