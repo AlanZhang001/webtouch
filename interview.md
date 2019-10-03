@@ -41,8 +41,8 @@
 ###### a标签跳转时 opener.location.href劫持
 - 定义：当带有target="_blank"的a标签打开的新标签页面，在新标签页中可以通过`window.opener.location.href = 'https://www.hack.com'`能将原页面跳转到恶意页面
 - 解决办法：
-    - 1. 在 a 标签的 rel 属性中指定 rel="noopener",这种方法IE上基本不支持
-    - 2. 在 a 标签的 rel 属性中指定 rel="noreferrer",这种方法IE10及以下不支持，同时设置noreferrer，也会导致新页面无法通过document.referrer 获取到源信息。为了更好解决这个劫持漏洞，一般会同时设置rel="noreferrer noopener"。
+    - 1.在 a 标签的 rel 属性中指定 rel="noopener",这种方法IE上基本不支持
+    - 2.在 a 标签的 rel 属性中指定 rel="noreferrer",这种方法IE10及以下不支持，同时设置noreferrer，也会导致新页面无法通过document.referrer 获取到源信息。为了更好解决这个劫持漏洞，一般会同时设置rel="noreferrer noopener"。
     - 3. 如果需要照顾老旧浏览器，可以通过js打开页面：`var newTab = window.open(); newTab.opener = null; newTab.location = targetUrl`
 - 延伸：rel="noopener" 对性能优化的帮助
     - 官方文档在介绍[a标签的target属性](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/a)时表明，通过 target="_blank"打开新页面时，会在原页面所在的进程中打开新页面，如果新页面在执行耗时js，原页面的性能会受到影响。
@@ -55,11 +55,11 @@
     - 仍然是点击劫持，恶意站点在iframe上覆盖一个透明的a标签，然后点击引导到恶意站点，用户认为是一个安全的站点跳转过来，因此很可能信任新的页面
     - 收集用户信息，比如在恶意站点旁边或者上层显示登录注册的表单，引导用户在安全站点的账号密码信息
 - 解决办法：
-    - 1. 通过js处理：
+    - 1.通过js处理：
         - 方法：js 判断当前页面是否在顶层,如果自己的页面不在顶层，则认为被iframe嵌套引入，做跳转：`(window.top != window.self) && top.location.href = "yuor url"`;
         - 存在的问题：恶意站点在通过iframe嵌入你的站点的时候，可以 让iframe嵌入的站点无法执行js。比如这样`<iframe sandbox="" src="https://www.hehe.com"></iframe>`。sandbox的具体使用见下节。或者 `<iframe sandbox=”allow-forms allow-same-origin allow-scripts”></iframe>`,这样，就可以保证js脚本的执行，但是禁止iframe里的javascript执行top.location.href= "xxx"；
 
-    - 2. 通过给页面设置`X-Frame-Options`响应头,来决定站点能被那些站点嵌入。IE8就开始支持了。设置 meta 标签是无效的。
+    - 2.通过给页面设置`X-Frame-Options`响应头,来决定站点能被那些站点嵌入。IE8就开始支持了。设置 meta 标签是无效的。
         - 一些配置
             - `X-Frame-Options: deny`：不允许在 frame 中展示，即便外层页面和要嵌入的页面同域
             - `X-Frame-Options: sameorigin`：外层页面如果和要嵌入的页面同域，则可以被嵌入
@@ -68,7 +68,7 @@
             - 1. allow-from支持不太好，且不支持设置多个域名
             - 2. 这是一个非官方标准的响应头，只不过是较早实现，官方建议和CSP一同使用。
 
-    - 3. CSP大法
+    - 3.CSP大法
         -  CSP中的frame-ancestors 指令指定了一个可以包含`<frame>，<iframe>，<object>，<embed>`等元素的有效父级,意思就是设置允许被哪些域进行嵌入
         - IE14之前除了13都不支持`frame-ancestors`,因此需要结合`X-Frame-Options`一起使用。
         - frame-ancestors策略可以设置一个或多个源，而且指定源的时候可以使用通配符，例如`Content-Security-Policy: frame-ancestors http://*.hehe.com`。
