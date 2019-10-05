@@ -36,6 +36,7 @@
         - ? 这里需要搞明白，转义 和 escap 和 encodeURI 、encodeURIComponent的区别
 
 - csrf
+    - 定义及危害：
 - cdn劫持
 
 ###### a标签跳转时 opener.location.href劫持
@@ -100,7 +101,19 @@
 
 
 - 302跳转劫持问题
-- 第三方资源js 本身存在安全问题
+
+###### 第三方资源js本身存在安全问题
+- 定义：
+    - 通过cdn加载的第三方js存在 问题代码
+    - 通过npm 安装的js组件存在问题代码，或者组件后续升级时，加入了问题代码，基本上作者的npm 或 github账号被盗后，就容易出现这种问题
+- 事故案例：
+    - [蚂蚁金服 Ant Design](https://www.cnbeta.com/articles/tech/802019.htm) 圣诞节彩蛋事件
+    - node 组件[event-stream](http://www.sohu.com/a/278521526_466846) 存在挖矿代码
+- 解决办法：这类问题只能代码审查及版本去做约束
+    - 1.使用前应该做足够的代码review及审查，没有社区支持、使用热度比较低的不要使用
+    - 2.不要通过cdn的方式挂在第三方资源，建议保存在本地项目中在进行挂载
+    - 3.对于需要npm install 安装的第三方库，应该明确指定版本或者通过`package-lock.json`锁定一个具体的版本
+
 - 第三方css偷取密码问题
 - 可执行文件上传漏洞
 - http明文传输本身存在问题
