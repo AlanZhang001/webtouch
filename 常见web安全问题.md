@@ -37,6 +37,44 @@
 
 - csrf
     - 定义及危害：
+    - 防御:
+        - 判断Referer
+        - 登录态通过localstorage保存，因为localstorage 不会默认携带在http请求头中，因此避免了csrf的问题
+            - 原理：登录态通过localstorage保存，每次请求时取localstorage中的登录态发送至服务端。由于localstorage没有过期时间，因此还需要自己实现一个具有过期时间的localstorage。
+            - 存在的问题：
+                - 页面不能发生XSS的攻击，否者登录态直接被泄露
+                - localstorage只能在当前域名下被读取，对于主域相同的多个不同域名，不能共享
+                - 操作略复杂，不管get/post,多需要手动携带登录态
+        - 请求加上token机制
+            - session级别的token机制：
+                - 访问页面时，在服务端的session中保存一个token，同时将token返回至前端页面html中，常见于通过一个meta标签或者 hidden 的input来保存。
+                - 发送请求时，在header或者请求参数中携带该token发送至服务端
+                - 服务端在seesion中取出对应的token 同http请求中的token进行对比来确认是否为合法请求
+            - cookie级别的token机制：
+                - 访问页面时，在服务端随机参数一个token，同时将token返回至前端页面html中，在cookie中也种下该token值
+                - 发送请求时，在header或者请求参数中携带该token发送至服务端
+                - 服务端在取出cookie中的token同 header或者参数只能的token进行对比来确认是否为合法请求
+            - 两种机制的区别：
+                - session级别的机制：
+                    - 由于Session默认存储在单机服务器内存中，因此在分布式环境下同一个用户发送的多次HTTP请求可能会先后落到不同的服务器上，导致后面发起的HTTP请求无法拿到之前的HTTP请求存储在服务器中的Session数据，从而使得Session机制在分布式环境下失效，因此在分布式集群中CSRF Token需要存储在Redis之类的公共存储空间。
+                    - 使用Session存储，读取和验证CSRF Token会引起比较大的复杂度和性能问题；
+                - cookie级别的机制：
+                    - 只需要对比http请求中的2处token是否一致即可，不会给服务器带来压力。
+                    - cookie级别的机制完全依赖于cookie，因此需要保证cookie 中的token 不能被前端修改，也不能存在xss漏洞。否者在，XSS攻击的情况下，可以随意在cookie种下一个token并泄露出去，导致这里的token机制失效。
+                    - 不依赖与session，实施起来成本低、快
+                    - 在没有设置httponly的前提下：登录态的cookie，默认是回话级别，关闭浏览器才失效，一旦遭遇XSS攻击导致token泄露，在无人工干预的情况下，token会一直有效。而session默认存在有效期，会主动让token失效。
+        - 给cookie 加上 SameSite属性: 允许服务器设置某个cookie在跨站请求时不会被发送，从而可以阻止CSRF
+            - IE10以前，IE12-15 不支持，QQ浏览器、UC浏览器不支持
+            - 几个参数：
+                - `Set-Cookie: a=1; Samesite=Strict`:严格模式，cookie 在任何情况下都不可能作为第三方 cookie
+                - `Set-Cookie: a=2; Samesite=Lax`:宽松模式，假如这个请求是这种请求（改变了当前页面或者打开了新页面）且同时是个GET请求，则在请求新页面时，会携带对应域名的cookie信息，意思就是不同站点下页面跳转不会有问题。除此之外，异步请求或其他方法的页面跳转都不会携带cookie信息
+            - 这种方式需要保证get请求的幂等性，否者`Samesite=Lax`模式下，还是存在get方式的CSRF工具可能
+            - 注意点：（[如何判断是否为同一个站点](https://blog.csdn.net/qq_37060233/article/details/86595916)）
+                - 当一个请求本身的 URL 和它的发起页面的 URL 不属于同一个站点时，这个请求就算第三方请求。
+                - 这里的不同站点的判断并非直接使用的 同域、跨域的概念进行判断，而是使用 Public Suffix List 来判断,为了方便理解，暂时用同域的概率来对应Public Suffix List  判断。
+            - 限制或不成熟的地方：
+
+        - 使用restful形式的接口
 - cdn劫持
 
 ###### a标签跳转时 opener.location.href劫持
@@ -117,7 +155,10 @@
 - 第三方css偷取密码问题
 - 可执行文件上传漏洞
 - http明文传输本身存在问题
-- web前端针对 法律法规存在的文案问题
+
+###### web前端针对 法律法规存在的文案问题
+这个不用多说，如果对广告法缺乏基本的认知，很可能出现法律安全方面的问题，比如国家目前是禁止`第一、最大、最全`这类的广告宣传；其次就是当地政策的不了解导致的安全问题，比如将 TW，HK归为国家类，这都是严重错误的情况。技术上无法完全规避这类文案问题，只能不断加强 文案安全合规的的意识。
+
 - 公开的信息被恶意批量爬取，比如有效资源，联系电话：见https://www.dianping.com/shop/57504830
 - 拖拽劫持
 
