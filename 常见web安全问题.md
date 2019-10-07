@@ -39,6 +39,8 @@
     - 定义及危害：
     - 防御:
         - 判断Referer
+            - Referer字段是无法再前端通过ajax设置header头来改变了的，http协议规定了[这些头](https://fetch.spec.whatwg.org/#forbidden-header-name)不能被修改
+            -
         - 登录态通过localstorage保存，因为localstorage 不会默认携带在http请求头中，因此避免了csrf的问题
             - 原理：登录态通过localstorage保存，每次请求时取localstorage中的登录态发送至服务端。由于localstorage没有过期时间，因此还需要自己实现一个具有过期时间的localstorage。
             - 存在的问题：
@@ -66,14 +68,12 @@
         - 给cookie 加上 SameSite属性: 允许服务器设置某个cookie在跨站请求时不会被发送，从而可以阻止CSRF
             - IE10以前，IE12-15 不支持，QQ浏览器、UC浏览器不支持
             - 几个参数：
-                - `Set-Cookie: a=1; Samesite=Strict`:严格模式，cookie 在任何情况下都不可能作为第三方 cookie
+                - `Set-Cookie: a=1; Samesite=Strict`:严格模式，cookie 在任何情况下都不可能作为第三方 cookie，只有当前网页的 URL 与请求目标一致，才会带上 Cookie。
                 - `Set-Cookie: a=2; Samesite=Lax`:宽松模式，假如这个请求是这种请求（改变了当前页面或者打开了新页面）且同时是个GET请求，则在请求新页面时，会携带对应域名的cookie信息，意思就是不同站点下页面跳转不会有问题。除此之外，异步请求或其他方法的页面跳转都不会携带cookie信息
             - 这种方式需要保证get请求的幂等性，否者`Samesite=Lax`模式下，还是存在get方式的CSRF工具可能
             - 注意点：（[如何判断是否为同一个站点](https://blog.csdn.net/qq_37060233/article/details/86595916)）
                 - 当一个请求本身的 URL 和它的发起页面的 URL 不属于同一个站点时，这个请求就算第三方请求。
                 - 这里的不同站点的判断并非直接使用的 同域、跨域的概念进行判断，而是使用 Public Suffix List 来判断,为了方便理解，暂时用同域的概率来对应Public Suffix List  判断。
-            - 限制或不成熟的地方：
-
         - 使用restful形式的接口
 - cdn劫持
 
