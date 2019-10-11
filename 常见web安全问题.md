@@ -37,10 +37,17 @@
 
 - csrf
     - 定义及危害：
+        - 流程：
+            - 1.用户在A站点登录后在本域种下登录态cookie
+            - 2.访问恶意站点B，恶意站点B的某个页面向站点A发起请求，而这个请求会带上浏览器端所保存的站点A的cookie；
+            - 3.站点A根据请求所带的cookie，判断此请求为用户所发送的，站点A会报据用户的权限来处理恶意站点B所发起的请求，以此达成恶意目的。
+        - 细节：
+            - B站点在发送向A的请求时，可以是通过img等发送一个get请求，也可以通过form表单构造一个post请求
+            - 如果通过xhr发送请求(不管是get还是post)，跨域时是默认不会携带cookie的，需要设置xhr.withCredentials = true;
+            - 通过img标签，form表单发送请求，默认是携带cookie的
     - 防御:
         - 判断Referer
             - Referer字段是无法再前端通过ajax设置header头来改变了的，http协议规定了[这些头](https://fetch.spec.whatwg.org/#forbidden-header-name)不能被修改
-            -
         - 登录态通过localstorage保存，因为localstorage 不会默认携带在http请求头中，因此避免了csrf的问题
             - 原理：登录态通过localstorage保存，每次请求时取localstorage中的登录态发送至服务端。由于localstorage没有过期时间，因此还需要自己实现一个具有过期时间的localstorage。
             - 存在的问题：
@@ -74,7 +81,7 @@
             - 注意点：（[如何判断是否为同一个站点](https://blog.csdn.net/qq_37060233/article/details/86595916)）
                 - 当一个请求本身的 URL 和它的发起页面的 URL 不属于同一个站点时，这个请求就算第三方请求。
                 - 这里的不同站点的判断并非直接使用的 同域、跨域的概念进行判断，而是使用 Public Suffix List 来判断,为了方便理解，暂时用同域的概率来对应Public Suffix List  判断。
-        - 使用restful形式的接口
+        - 使用restful形式的接口?
 - cdn劫持
 
 ###### a标签跳转时 opener.location.href劫持
