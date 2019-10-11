@@ -82,7 +82,6 @@
                 - 当一个请求本身的 URL 和它的发起页面的 URL 不属于同一个站点时，这个请求就算第三方请求。
                 - 这里的不同站点的判断并非直接使用的 同域、跨域的概念进行判断，而是使用 Public Suffix List 来判断,为了方便理解，暂时用同域的概率来对应Public Suffix List  判断。
         - 使用restful形式的接口?
-- cdn劫持
 
 ###### a标签跳转时 opener.location.href劫持
 - 定义：当带有target="_blank"的a标签打开的新标签页面，在新标签页中可以通过`window.opener.location.href = 'https://www.hack.com'`能将原页面跳转到恶意页面
@@ -143,10 +142,6 @@
     - allow-popups:允许iframe中弹出新窗口,比如,window.open,target="_blank"
     - allow-pointer-lock:在iframe中可以锁定鼠标，主要和鼠标锁定有关（没太懂这个含义）
 
-
-
-- 302跳转劫持问题
-
 ###### 第三方资源js本身存在安全问题
 - 定义：
     - 通过cdn加载的第三方js存在 问题代码
@@ -159,6 +154,8 @@
     - 2.不要通过cdn的方式挂在第三方资源，建议保存在本地项目中在进行挂载
     - 3.对于需要npm install 安装的第三方库，应该明确指定版本或者通过`package-lock.json`锁定一个具体的版本
 
+- 302跳转劫持问题
+- cdn劫持
 - 第三方css偷取密码问题
 - 可执行文件上传漏洞
 - http明文传输本身存在问题
