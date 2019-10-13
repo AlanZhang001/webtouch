@@ -203,7 +203,7 @@ input[type="password"][value$="6"] { background-image: url("http://www.hacker.co
 
 从浏览器发起一个http请求，大致会经过如下设备：本机-路由器-运营商服务器-外网路由转发-服务，因为http是明文传输，无论哪一步都能对http报文进行修改，比如加入广告代码、窃取敏感信息，因此http明文传输是不安全的。
 
-**防御措施*
+**防御措施**
 
 - 无他，无痕升级HTTPS
 - 升级HTTPS可能存在的问题：
