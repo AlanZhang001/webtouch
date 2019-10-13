@@ -1,6 +1,8 @@
 
 ## 安全问题
 
+> CSP的详细文档<https://cloud.tencent.com/developer/chapter/13541>
+
 #### WEB前端
 ######  xss
 - 定义：
