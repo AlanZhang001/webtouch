@@ -99,8 +99,6 @@ firstname='zhang'
 str4='my first name is $firstname';
 ```
 
-```
-
 ## 参考
 
 - [入门](https://github.com/qinjx/30min_guides/blob/master/shell.md)
