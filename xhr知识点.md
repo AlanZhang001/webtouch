@@ -96,11 +96,11 @@ var util = {
 xhr.setRequestHeader('X-Http-Method-Override','PATCH');// DELETE,PUT,HEAD
 ```
 
-#### 跨域携带cookie
+#### 4. 跨域携带cookie
 
 在通过xhr发送跨域请求是，默认是不会携带对应接口所在域cookie，需要设置xhr.withCredentials = true。
 
-#### 请求头的复写
+#### 5. 请求头的复写
 
 http协议规定，设置请求头时，以下请求头设置无效：https://fetch.spec.whatwg.org/#forbidden-header-name
 
