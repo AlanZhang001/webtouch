@@ -65,7 +65,12 @@ pkill httpd
 nohup ping www.ibm.com &
 ```
 
+##### 命令搜索
 
+```sh
+# 搜索历史命令
+ctrl + r
+```
 
 ## 参考
 
