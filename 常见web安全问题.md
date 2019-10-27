@@ -249,11 +249,14 @@ input[type="password"][value$="6"] { background-image: url("http://www.hacker.co
                 - 前端渲染对体验并不友好，关键信息的显示存在一定的延迟。这种方式很可能要和产品PK。
     - 让敏感信息对爬虫不可见
         - 以icon-font的形式来显示数字，爬虫拿到这些信息无法直接使用，如大众点评的电话号码：http://www.dianping.com/shop/96647805,  猫眼电影的票房：https://maoyan.com/films/342601
+        - 使用伪元素来显示内容而不是直接在html中显示，比如汽车之家显示厂商：https://car.autohome.com.cn/config/series/3170.html
         - 类似的，以background的显示数字，将0-9以图片的形式保存在一个雪碧图中，通过位置偏移的方式来显示不同的数字。（没找到实际的应用场景，毕竟相对于字体文件没有优势）
+        - 上面的方式都需要使用额外的资源如：css,字体文件，图片，稍微加大了点性能开销。
 - 反正，到最后你会发现，始终没有完美的解决方案，但是可以不断提供抓取的难度。
 
 <img src="./asserts/04.png" style="width:40%">
 <img src="./asserts/05.png" style="width:40%">
+<img src="./asserts/06.png" style="width:40%">
 
 ## 后端
 
