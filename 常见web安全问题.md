@@ -252,6 +252,11 @@ input[type="password"][value$="6"] { background-image: url("http://www.hacker.co
         - 类似的，以background的显示数字，将0-9以图片的形式保存在一个雪碧图中，通过位置偏移的方式来显示不同的数字。（没找到实际的应用场景，毕竟相对于字体文件没有优势）
 - 反正，到最后你会发现，始终没有完美的解决方案，但是可以不断提供抓取的难度。
 
+<img src="./asserts/04.png" style="width:40%">
+<img src="./asserts/05.png" style="width:40%">
+
+
+
 比如有效资源，联系电话：见https://www.dianping.com/shop/57504830
 
 
