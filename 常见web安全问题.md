@@ -255,11 +255,6 @@ input[type="password"][value$="6"] { background-image: url("http://www.hacker.co
 <img src="./asserts/04.png" style="width:40%">
 <img src="./asserts/05.png" style="width:40%">
 
-
-
-比如有效资源，联系电话：见https://www.dianping.com/shop/57504830
-
-
 ## 后端
 
 - SQL 注入： sqlmap，中国菜刀
