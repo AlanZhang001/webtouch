@@ -196,6 +196,9 @@ input[type="password"][value$="6"] { background-image: url("http://www.hacker.co
 #### 8. 302跳转劫持问题
 
 #### 9. cdn劫持
+
+
+
 #### 10. 可执行文件上传漏洞
 
 #### 11. http明文传输本身存在问题
