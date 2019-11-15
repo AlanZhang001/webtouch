@@ -115,6 +115,8 @@ brew cask install virtualbox
 brew cask install alfred
 # 安装快捷键提示功能：CheatSheet,安装后长按Command
 brew cask install cheatsheet 
+# 命令行提示工具，见https://github.com/denisidoro/navi
+brew install denisidoro/tools/navi
 # 安装截图工具
 brew cask install jietu
 ```
