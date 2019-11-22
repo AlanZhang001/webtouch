@@ -72,6 +72,29 @@ nohup ping www.ibm.com &
 ctrl + r
 ```
 
+##### dig 
+
+用来显示域名的整个查询过程
+
+```sh
+# 查询整个过程，包括背后的额cname
+dig static.futunn.com
+# 直接查看域名对应的ip
+dig +short static.futunn.com
+
+```
+查询中中的几种dns记录类型
+
+```sh
+（1） A：地址记录（Address），返回域名指向的IP地址。
+
+（2） NS：域名服务器记录（Name Server），返回保存下一级域名信息的服务器地址。该记录只能设置为域名，不能设置为IP地址。
+
+（3）MX：邮件记录（Mail eXchange），返回接收电子邮件的服务器地址。
+
+（4）CNAME：规范名称记录（Canonical Name），返回另一个域名，即当前查询的域名是另一个域名的跳转，详见下文。
+```
+
 ## 参考
 
 - linux命令搜索引擎<https://wangchujiang.com/linux-command/>
