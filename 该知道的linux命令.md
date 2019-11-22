@@ -83,6 +83,9 @@ dig static.futunn.com
 dig +short static.futunn.com
 
 ```
+
+![](./asserts/dig.jpg)
+
 查询中中的几种dns记录类型
 
 ```sh
@@ -92,8 +95,10 @@ dig +short static.futunn.com
 
 （3）MX：邮件记录（Mail eXchange），返回接收电子邮件的服务器地址。
 
-（4）CNAME：规范名称记录（Canonical Name），返回另一个域名，即当前查询的域名是另一个域名的跳转，详见下文。
+（4）CNAME：规范名称记录（Canonical Name），返回另一个域名，即当前查询的域名是另一个域名的跳转
 ```
+
+这篇文章讲的详细<http://www.ruanyifeng.com/blog/2016/06/dns.html>
 
 ## 参考
 
