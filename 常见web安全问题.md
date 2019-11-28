@@ -123,7 +123,7 @@
         - 几个demo
             - `Content-Security-Policy: frame-ancestors 'none';`其作用类似于X-Frame-Options: DENY
             - `Content-Security-Policy: frame-ancestors 'self';`其作用类似于X-Frame-Options: SAMEORIGIN
-            - `Content-Security-Policy: frame-ancestors https://*.futunn.com  https://*.futu5.com;`表示允许被futunn和futu5下的域名进行嵌入
+            - `Content-Security-Policy: frame-ancestors https://*.futunn.com  https://*.futu5.com http://webtouch.com:3000/;`表示允许被futunn和futu5下的域名进行嵌入,注意，如果有显式的端口，要写上端口，否者跨域了
 
 > 普通跨域的情况，iframe 是获取不到 `top.location.href`，但是可以设置`top.location.href`。
 
