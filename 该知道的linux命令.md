@@ -12,9 +12,21 @@ php -i | grep php.ini
 # 在多个文本中搜索文本
 grep '笔记' CSS3原生变量var.md cssworld学习笔记.md
 
+# 在特定的文件中搜索并列出文件名
+grep passport -rl *.conf
+
 # 更具关键字搜索进程（如搜索sublime）
 ps aux | grep Sublime
 
+# 列出关键词在文件中的行数
+grep -n  log passport.conf
+# 同时忽略大小写
+grep -ni  log passport.conf
+
+```
+
+##### pbcopy
+```html
 # 将一段文本复制到系统剪贴板
 # mac: 将输出通过 | pbcopy 即可输出到系统剪贴板
 cat .bash_profile | pbcopy
