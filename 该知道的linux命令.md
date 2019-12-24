@@ -123,6 +123,19 @@ dig +short static.futunn.com
 
 这篇文章讲的详细<http://www.ruanyifeng.com/blog/2016/06/dns.html>
 
+##### 磁盘命令相关
+
+```sh
+# 查看磁盘的挂载情况和使用情况
+df -h
+# 查看某个目录的具体使用情况
+df -h
+# 查看当前目录每个文件夹占用的情况
+du --max-depth=1 -h 
+# 查看某个目录下的文件夹占用情况
+du --max-depth=1 -h  /usr/
+```
+
 ## 参考
 
 - linux命令搜索引擎<https://wangchujiang.com/linux-command/>
