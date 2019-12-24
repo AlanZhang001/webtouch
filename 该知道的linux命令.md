@@ -135,7 +135,7 @@ du --max-depth=1 -h
 # 查看某个目录下的文件夹占用情况
 du --max-depth=1 -h  /usr/
 ```
-
+![img](./asserts/df1.png)
 ## 参考
 
 - linux命令搜索引擎<https://wangchujiang.com/linux-command/>
