@@ -7,8 +7,9 @@
 
 #### 1. xss
 - 定义：
-    - 反射性：代码不会储存。类似`https://www.weibo?t=${xss的代码}`的链接，当t的值被当做html片段插入文档中xss代码即被执行
-    - 存储性：在提交表单数据时，xss代码被保存在数据库，下次在页面上直接输出该部分内容展示时被执行
+    - 反射型：代码不会储存。类似`https://www.weibo?t=${xss的代码}`的链接，当t的值被当做html片段插入文档中xss代码即被执行
+    - 存储型：在提交表单数据时，xss代码被保存在数据库，下次在页面上直接输出该部分内容展示时被执行
+    - dom型：利用dom元素，如base，img的onerror方法进行xss攻击
 - 危害：
     - 获取cookie等敏感信息并传输出去
     - 在当前页面加入恶意代码或者直接加载一个外部js，这样可以做很多事情
@@ -19,6 +20,7 @@
         - 开启这个功能后，当浏览器检测到跨站脚本攻击（XSS）时，浏览器将对页面做清理或直接阻止整个页面的加载。
         - IE、Chrome 和 Safari 都内置了这个模块。edge 和火狐没有内置这个模块。
         - 在 IE 上它叫 XSS Filter，在 Chrome 上它叫 XSS Auditor（不过[chrome准备弃用XSS Auditor](https://linux.cn/article-11112-1.html)）。
+        - chrome74起，已不支持X-XSS-Protection，Safari任然支持，Firefox不支持
         - 可以为尚不支持 CSP 的旧版浏览器的用户提供保护
         - 几个用法：
             - X-XSS-Protection : 0，禁用 XSS 过滤这个功能
