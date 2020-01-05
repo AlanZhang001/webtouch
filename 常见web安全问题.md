@@ -67,7 +67,7 @@
         - cookie级别的token机制：
             - 访问页面时，在服务端随机参数一个token，同时将token返回至前端页面html中，在cookie中也种下该token值
             - 发送请求时，在header或者请求参数中携带该token发送至服务端
-            - 服务端在取出cookie中的token同 header或者参数只能的token进行对比来确认是否为合法请求
+            - 服务端在取出cookie中的token同 header或者参数中的token进行对比来确认是否为合法请求
         - 两种机制的区别：
             - session级别的机制：
                 - 由于Session默认存储在单机服务器内存中，因此在分布式环境下同一个用户发送的多次HTTP请求可能会先后落到不同的服务器上，导致后面发起的HTTP请求无法拿到之前的HTTP请求存储在服务器中的Session数据，从而使得Session机制在分布式环境下失效，因此在分布式集群中CSRF Token需要存储在Redis之类的公共存储空间。
