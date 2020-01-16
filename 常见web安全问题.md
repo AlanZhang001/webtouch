@@ -82,11 +82,19 @@
         - 几个参数：
             - `Set-Cookie: a=1; Samesite=Strict`:严格模式，cookie 在任何情况下都不可能作为第三方 cookie，只有当前网页的 URL 与请求目标一致，才会带上 Cookie。
             - `Set-Cookie: a=2; Samesite=Lax`:宽松模式，假如这个请求是这种请求（改变了当前页面或者打开了新页面）且同时是个GET请求，则在请求新页面时，会携带对应域名的cookie信息，意思就是不同站点下页面跳转不会有问题。除此之外，异步请求或其他方法的页面跳转都不会携带cookie信息
+            - `Set-Cookie: a=3; Samesite=None`:显示关闭Samesite限制，必须同时设置Secure属性（Cookie 只能通过 HTTPS 协议发送），否则无效。
         - 这种方式需要保证get请求的幂等性，否者`Samesite=Lax`模式下，还是存在get方式的CSRF工具可能
         - 注意点：（[如何判断是否为同一个站点](https://blog.csdn.net/qq_37060233/article/details/86595916)）
             - 当一个请求本身的 URL 和它的发起页面的 URL 不属于同一个站点时，这个请求就算第三方请求。
             - 这里的不同站点的判断并非直接使用的 同域、跨域的概念进行判断，而是使用 Public Suffix List 来判断,为了方便理解，暂时用同域的概率来对应Public Suffix List  判断。
-    - 使用restful形式的接口?
+        - SameSite=Lax前提下，导航到目标网址的 GET 请求，只包括三种情况：链接，预加载请求，GET 表单，其携带cookie的情况如下：
+        ![](./asserts/lax.png)
+        - Chrome 80默认设置 cookie为 samesite=lax,对于没有设置samesite的cookie，默认处理为lax，见连接：<https://www.chromestatus.com/feature/5088147346030592>。
+        ![](./asserts/none.png)
+        - bug：Safari 存在bug，可能无意间将 SameSite=None 当做Strict来处理
+            - bug链接：https://bugs.webkit.org/show_bug.cgi?id=198181
+            - 针对这种情况，google 收集了不支持SameSite=None的浏览器,避免给这部分浏览器设置为samesite none即可。根据ua来匹配，伪代码: <https://www.chromium.org/updates/same-site/incompatible-clients>
+
 
 #### 3. a标签跳转时 opener.location.href劫持
 - 定义：当带有target="_blank"的a标签打开的新标签页面，在新标签页中可以通过`window.opener.location.href = 'https://www.hack.com'`能将原页面跳转到恶意页面
