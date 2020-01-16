@@ -101,7 +101,7 @@
 - 解决办法：
     - 1.在 a 标签的 rel 属性中指定 rel="noopener",这种方法IE上基本不支持
     - 2.在 a 标签的 rel 属性中指定 rel="noreferrer",这种方法IE10及以下不支持，同时设置noreferrer，也会导致新页面无法通过document.referrer 获取到源信息。为了更好解决这个劫持漏洞，一般会同时设置rel="noreferrer noopener"。
-    - 3. 如果需要照顾老旧浏览器，可以通过js打开页面：`var newTab = window.open(); newTab.opener = null; newTab.location = targetUrl`
+    - 3.如果需要照顾老旧浏览器，可以通过js打开页面：`var newTab = window.open(); newTab.opener = null; newTab.location = targetUrl`
 - 延伸：rel="noopener" 对性能优化的帮助
     - 官方文档在介绍[a标签的target属性](https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/a)时表明，通过 target="_blank"打开新页面时，会在原页面所在的进程中打开新页面，如果新页面在执行耗时js，原页面的性能会受到影响。
     - 通过设置rel="noopener"，可以避免这种性能问题。
