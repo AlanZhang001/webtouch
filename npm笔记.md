@@ -86,7 +86,13 @@ npm owner ls tool-callapp：列出当前等发布包的账号
 
 ![](./asserts/npmci.png)
 
+###### 11. npm 和 lock文件
+
+- 在npm 5.0 ~ 5.6中间对package-lock.json的处理逻辑更新过几个版本，5.6以上才开始稳定
+- 这里查看过往的node版本自带的npm版本 <https://nodejs.org/zh-cn/download/releases/>
+
 ## 学习参考链接
 
+- 你所需要的npm知识储备都在这了:<https://juejin.im/post/5d08d3d3f265da1b7e103a4d>
 - package.json 字段说明: <http://mujiang.info/translation/npmjs/files/package.json.html>
 - npmjs: <https://docs.npmjs.com/cli/>
