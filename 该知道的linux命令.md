@@ -136,6 +136,13 @@ du --max-depth=1 -h
 du --max-depth=1 -h  /usr/
 ```
 ![img](./asserts/df1.png)
+
+##### crontab
+
+学习资料：<https://www.jianshu.com/p/838db0269fd0>
+
+
+
 ## 参考
 
 - linux命令搜索引擎<https://wangchujiang.com/linux-command/>
