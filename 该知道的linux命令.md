@@ -139,9 +139,12 @@ du --max-depth=1 -h  /usr/
 
 ##### crontab
 
-学习资料：<https://www.jianshu.com/p/838db0269fd0>
+- 学习资料：<https://www.jianshu.com/p/838db0269fd0>
 
 
+时间格式
+
+![](./asserts/crontab/time.png)
 
 ## 参考
 
