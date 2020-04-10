@@ -150,6 +150,15 @@ du --max-depth=1 -h  /usr/
 
 ![](./asserts/crontab/time.png)
 
+#### vi的一些技巧
+
+```sh
+# 粘贴复制时，格式错乱解决办法
+:set paste
+# 显示行号
+:set nu
+```
+
 ## 参考
 
 - linux命令搜索引擎<https://wangchujiang.com/linux-command/>
