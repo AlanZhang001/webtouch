@@ -123,6 +123,10 @@ dig +short static.futunn.com
 
 这篇文章讲的详细<http://www.ruanyifeng.com/blog/2016/06/dns.html>
 
+##### ssh免密码登录
+- 将~/.ssh/id_rsa.pub 拷贝到 目标机器的~/.ssh/authorized_keys 文件中
+- 注意pub文件的换行问题，在txt中打开再复制
+
 ##### 磁盘命令相关
 
 ```sh
