@@ -16,7 +16,7 @@
 $ git commit -m "版本1.5开发代码"
 # 正当你松了一口气的时候发现配置文件忘记修改了, 你赶紧修改,并适合用add到暂存区
 $ git add project.property
-$ git commit --amend        
+$ git commit --amend
 # 你会神奇的发现你没有增加任何多余的操作就把漏掉的文件补齐到最后一次提交中
 
 ```
@@ -45,11 +45,11 @@ $ git commit --amend
 ```
 
 ###### 4. 增加子模块
- 
+
 - 添加子模块： `git submodule add http://gitlab.futunn.com/alanzhang/[componentname].git ./submodule/[componentname]`
 - 更新各个子模块： `git submodule init;git submodule update;git submodule foreach "git checkout master;git pull origin master;"`
 - 批量执行任务:`git submodule foreach 'commend ...'`
- 
+
 ##### 5. 重写提交历史说明
 
 - 改变最近一次提交
@@ -89,7 +89,7 @@ git remote -v
 git config --global credential.helper store
 ```
 
-##### 10. git remote 
+##### 10. git remote
 
 ```shell
 # 显示git 项目的url信息
@@ -157,4 +157,4 @@ git rebase
 - 日常使用 Git 的 19 个建议<https://juejin.im/entry/56737bca00b0bf37ccb00ebe>
 - [github设置添加SSH](https://www.cnblogs.com/ayseeing/p/3572582.html)
 - [git bisect 二分查找](http://www.ruanyifeng.com/blog/2018/12/git-bisect.html)
-
+- [Git tips](https://github.com/521xueweihan/git-tips)
