@@ -18,7 +18,7 @@ exports.xxx = xxx;
 
 因此，使用exports 、 module.exports导出的模块，使用的方式也有细微差别
 
-#### module.exports 
+#### module.exports
 ```js
 // 导出 a.js
 function ajax(w){console.log(w)};
@@ -30,7 +30,7 @@ ajax('hello');
 ```
 
 #### exports
-```
+```js
 // 导出 a.js
 function ajax(w){console.log(w)};
 exports.ajax = ajax;
@@ -55,13 +55,15 @@ ajax('hello');
         root['xhr'] = factory();
 })(this, function() {
     return (function(modules) { // webpackBootstrap
-        // The module cache
+        // 模块缓存
         var installedModules = {};
 
         // The require function
+        // dist中的js，就是通过这个函数调用其他模块
         function __webpack_require__(moduleId) {
 
             // 判断installedModules是否已存在对应模块，处理一下缓存
+            // 相同的模块不会被加载多次
             if (installedModules[moduleId]) {
                 return installedModules[moduleId].exports;
             }
@@ -72,7 +74,8 @@ ajax('hello');
                 exports: {}
             };
 
-            // modules[moduleId]是函数，执行之，让导出的方法被引用到module.exports上来（module.exports现在指向的就是导出的模块）
+            // modules[moduleId]是函数，执行之，让导出的方法被引用到module.exports上来
+            // （module.exports现在指向的就是导出的模块）
             // 这里的module, module.exports是各个模块中使用的module, module.exports
             modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
 
@@ -86,6 +89,7 @@ ajax('hello');
         // expose the modules object (__webpack_modules__)
         __webpack_require__.m = modules;
         // expose the module cache
+        // 让function上也能访问到安装缓存
         __webpack_require__.c = installedModules;
         // identity function for calling harmony imports with the correct context
         __webpack_require__.i = function(value) {
