@@ -3,7 +3,7 @@
 [Mac 官方键盘快捷键](https://support.apple.com/zh-cn/HT201236)
 
 #### 1. 如何打开共享磁盘
-打开finder，快捷键 com + k，输入`smb://databox.oa.com`
+打开finder，快捷键 com + k，输入`smb://databox.xx.com`
 
 ### 2. 一些用到的快捷键，少问人
 

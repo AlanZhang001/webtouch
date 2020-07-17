@@ -4,7 +4,7 @@
 
 我们常常看到这样一个文件，例如package-lock.json
 
-![futu8/frontend/package-lock.json](./asserts/lock.png)
+![package-lock.json](./asserts/lock.png)
 
 在安装依赖的过程中，你会发现：
 - 安装组件时，会多出一个叫 `package-lock.json`的文件
@@ -14,7 +14,7 @@
 
 ### 2. package-lock.json的产生
 
-在`npm`的[changelog](https://github.com/npm/npm/releases?after=v5.0.4)中可以看到，`npm 5.0.0`发布以后, 每次安装前端组件执行`npm - @futuweb/xxxx --save`时会默认产生package-lock.json。
+在`npm`的[changelog](https://github.com/npm/npm/releases?after=v5.0.4)中可以看到，`npm 5.0.0`发布以后, 每次安装前端组件执行`npm - @xxx/xxxx --save`时会默认产生package-lock.json。
 
 ![img](./asserts/5.0.png)
 

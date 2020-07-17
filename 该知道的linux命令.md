@@ -15,7 +15,7 @@ grep '笔记' CSS3原生变量var.md cssworld学习笔记.md
 # 在特定的文件中搜索并列出文件名
 grep passport -rl *.conf
 # -E使用扩展的正则来search，见这里https://www.cnblogs.com/cwy-blog/p/8005974.html
-grep -Ei  'passport|futu5'  -rn *.conf
+grep -Ei  'passport|baidu'  -rn *.conf
 
 # 根据关键字搜索进程（如搜索sublime）
 ps aux | grep Sublime

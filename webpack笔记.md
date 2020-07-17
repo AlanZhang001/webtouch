@@ -215,8 +215,7 @@ webpack3 对饮的vue-loader如果是 14.x，如果需要对vue文件中的代�
  {
 	test: /\.vue$/,
 	include: [
-	    path.resolve(__dirname,'web/scripts/app'),
-	    path.resolve(__dirname,'node_modules/@futuweb')
+	    path.resolve(__dirname,'web/scripts/app')
 	],
 	loader: 'vue-loader',
 	options: {
