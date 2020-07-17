@@ -101,9 +101,9 @@ ctrl + r
 
 ```sh
 # 查询整个过程，包括背后的额cname
-dig static.futunn.com
+dig static.xxx.com
 # 直接查看域名对应的ip
-dig +short static.futunn.com
+dig +short static.xxx.com
 
 ```
 

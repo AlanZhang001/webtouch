@@ -34,7 +34,7 @@
         - [配置略复杂]()，看几个例子
             - Content-Security-Policy: default-src https:禁用不安全的内联/动态执行, 只允许通过 https加载这些资源 (images, fonts, scripts, etc.)
             - Content-Security-Policy: default-src 'self': 要所有内容均来自站点的同一个源 (不包括其子域名)
-            - Content-Security-Policy: default-src 'self' *.futunn.com:允许内容来自信任的域名及其子域名 (域名不必须与CSP设置所在的域名相同)
+            - Content-Security-Policy: default-src 'self' *.baidu.com:允许内容来自信任的域名及其子域名 (域名不必须与CSP设置所在的域名相同)
             - 更多[示例](https://infosec.mozilla.org/guidelines/web_security#examples-4)
     - 特殊字符输出时转义（因为内容可能在多终端显示，所以建议在后端输出时转义而不是输入时）
         - < 转成 &lt; > 转成 &gt; & 转成 &amp; " 转成 &quot; ' 转成 &#39
@@ -133,7 +133,7 @@
         - 几个demo
             - `Content-Security-Policy: frame-ancestors 'none';`其作用类似于X-Frame-Options: DENY
             - `Content-Security-Policy: frame-ancestors 'self';`其作用类似于X-Frame-Options: SAMEORIGIN
-            - `Content-Security-Policy: frame-ancestors https://*.futunn.com  https://*.futu5.com http://webtouch.com:3000/;`表示允许被futunn和futu5下的域名进行嵌入,注意，如果有显式的端口，要写上端口，否者跨域了
+            - `Content-Security-Policy: frame-ancestors https://*.baidu.com  https://*.qq.com http://webtouch.com:3000/;`表示允许被baidu和qq下的域名进行嵌入,注意，如果有显式的端口，要写上端口，否者跨域了
 
 > 普通跨域的情况，iframe 是获取不到 `top.location.href`，但是可以设置`top.location.href`。
 
@@ -189,7 +189,7 @@
     - 谨慎加载第三方css
     - CSP 大法又来了：`Content-Security-Policy: img-src`指令指定图像和网站图标的有效来源
         - 设置图片只能来至当前页面的源：`Content-Security-Policy: img-src 'self'`
-        - 设置图片只能来至指指定站点源：`Content-Security-Policy: img-src https://*.futunn.com https://*.futu5.com`
+        - 设置图片只能来至指指定站点源：`Content-Security-Policy: img-src https://*.baidu.com https://*.qq.com`
         - 其他的源会被浏览器拦截，无法进行图片加载
 
 ```css

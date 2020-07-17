@@ -69,7 +69,7 @@ JavaScript并非简单的一行行解释执行，而是将JavaScript代码分为
 #### null与undefined的区别是什么？✓
 #### 0.1+0.2为什么不等于0.3？【很重要，未开始】
 #### 类型转换的规则有哪些？【很重要，未开始】
-![](https://cloudmain.futunn.com/alanzhang/type-3d7db14268d923bcc53652d22d0ba8f7.png?_=1591622604696)
+![](./asserts/type.png)
 
 
 

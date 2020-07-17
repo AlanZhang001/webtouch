@@ -210,7 +210,7 @@ exports.default = ajax;
 /**
  * 对ajax的封装,支持promise回调
  * @module xhr2
- * @author alanzhang <alanzhang@futunn.com>
+ * @author alanzhang <alanzhang001@qq.com>
  */
 
 function ajax(argument) {

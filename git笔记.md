@@ -46,7 +46,7 @@ $ git commit --amend
 
 ###### 4. 增加子模块
 
-- 添加子模块： `git submodule add http://gitlab.futunn.com/alanzhang/[componentname].git ./submodule/[componentname]`
+- 添加子模块： `git submodule add http://gitlab.xxxx.com/alanzhang/[componentname].git ./submodule/[componentname]`
 - 更新各个子模块： `git submodule init;git submodule update;git submodule foreach "git checkout master;git pull origin master;"`
 - 批量执行任务:`git submodule foreach 'commend ...'`
 
