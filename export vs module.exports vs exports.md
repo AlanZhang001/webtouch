@@ -225,4 +225,5 @@ module.exports = exports["default"];
 var ajax = require('xx.js')
 ```
 
-
+#### export default 是误用的写法
+- [深入解析ES Module（一）：禁用export default object](https://zhuanlan.zhihu.com/p/97335917)
