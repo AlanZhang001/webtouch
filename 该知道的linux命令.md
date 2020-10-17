@@ -28,7 +28,7 @@ grep -ni  log passport.conf
 
 ```
 
-##### tail head 
+##### tail head
 ```html
 # 实时输出a.log的 结尾 10行信息
 tail -f -n 10  a.log
@@ -95,7 +95,7 @@ nohup ping www.ibm.com &
 ctrl + r
 ```
 
-##### dig 
+##### dig
 
 用来显示域名的整个查询过程
 
@@ -135,7 +135,7 @@ df -h
 # 查看某个目录的具体使用情况
 df -h
 # 查看当前目录每个文件夹占用的情况
-du --max-depth=1 -h 
+du --max-depth=1 -h
 # 查看某个目录下的文件夹占用情况
 du --max-depth=1 -h  /usr/
 ```
@@ -157,6 +157,10 @@ du --max-depth=1 -h  /usr/
 :set paste
 # 显示行号
 :set nu
+# 跳转到首行
+gg
+## 跳到整段末尾
+shift+g
 ```
 
 ## 参考

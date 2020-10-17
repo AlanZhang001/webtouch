@@ -61,6 +61,9 @@ npm owner ls tool-callapp：列出当前等发布包的账号
 ```
 
 ###### 7. env
+```sh
+env
+```
 列出所有的环境变量,注意需要在bash的环境下运行
 
 ###### 8. npm run原理
