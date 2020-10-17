@@ -158,6 +158,28 @@ ls -alhT
 # 在结果中只显示 匹配someword的文件，不包括文件目录,类似过滤
 ls *someword*
 ```
+
+##### ln 软链（不记不是程序员）
+软链和硬链的区别：https://blog.csdn.net/stupid56862/article/details/90785420，大致意思是：
+- 硬链是原文件的一个指针，修改会影响到原文。一个文件可以有多个硬链，文件名就是一个，当硬链的删除到位0时，文件就真的删除了。
+- 软链类似windows下的快捷方式
+
+```sh
+# 基本结构
+# ln -s 创建软连接
+# ln -f 如果目标目录中已经有同名的文件，无需提示，直接覆盖
+# ln -b 如果目标目录中已经有同名的文件，那么在覆盖之前先进行备份
+ln [选项] 源文件或目录 目标文件或目录
+# 创建一个link
+n -s readme.md alink
+# 可以通过软链对源文件进行访问和修改
+# 等用于cat readme.md
+cat alink
+# 等用于vi readme.md
+vi alink
+```
+
+
 ##### crontab
 
 - 学习资料：<https://www.jianshu.com/p/838db0269fd0>
