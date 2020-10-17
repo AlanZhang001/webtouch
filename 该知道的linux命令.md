@@ -141,6 +141,16 @@ du --max-depth=1 -h  /usr/
 ```
 ![img](./asserts/df1.png)
 
+##### ls （不记不是程序员）
+
+```sh
+# -a 表示显示所有文件：目录、文件
+# -l list展示
+# -h 人性化形式显示文件大小
+ll -alh
+# 在结果中只显示 匹配someword的文件，不包括文件目录,类似过滤
+ll *someword*
+```
 ##### crontab
 
 - 学习资料：<https://www.jianshu.com/p/838db0269fd0>
