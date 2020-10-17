@@ -28,6 +28,12 @@ grep -ni  log passport.conf
 
 ```
 
+##### alias
+```sh
+# 累出某个具体的alias的具体命令
+alias sql
+```
+
 ##### tail head
 ```html
 # 实时输出a.log的 结尾 10行信息
@@ -147,9 +153,10 @@ du --max-depth=1 -h  /usr/
 # -a 表示显示所有文件：目录、文件
 # -l list展示
 # -h 人性化形式显示文件大小
-ll -alh
+# -T 显示文件或目录最后修改的时间
+ls -alhT
 # 在结果中只显示 匹配someword的文件，不包括文件目录,类似过滤
-ll *someword*
+ls *someword*
 ```
 ##### crontab
 
