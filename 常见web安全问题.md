@@ -77,7 +77,8 @@
                 - cookie级别的机制完全依赖于cookie，因此需要保证cookie 中的token 不能被前端修改，也不能存在xss漏洞。否者在，XSS攻击的情况下，可以随意在cookie种下一个token并泄露出去，导致这里的token机制失效。
                 - 不依赖与session，实施起来成本低、快
                 - 在没有设置httponly的前提下：登录态的cookie，默认是回话级别，关闭浏览器才失效，一旦遭遇XSS攻击导致token泄露，在无人工干预的情况下，token会一直有效。而session默认存在有效期，会主动让token失效。
-    - 给cookie 加上 SameSite属性: 允许服务器设置某个cookie在跨站请求时不会被发送，从而可以阻止CSRF
+    - 给cookie 加上 SameSite属性: 允许服务器设置某个cookie在跨站请求时不会被发送，从而可以阻止CSRF。
+        - 注意：给某些浏览器种samesite的cookie，可能会失败，导致在发送请求的时候cookie无法携带出去，导致csrf无法验证通过40x的错误，[例子](https://bbs.360.cn/forum.php?mod=viewthread&tid=15317988&highlight=cookie)
         - IE10以前，IE12-15 不支持，QQ浏览器、UC浏览器不支持
         - 几个参数：
             - `Set-Cookie: a=1; Samesite=Strict`:严格模式，cookie 在任何情况下都不可能作为第三方 cookie，只有当前网页的 URL 与请求目标一致，才会带上 Cookie。
