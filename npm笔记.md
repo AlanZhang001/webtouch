@@ -117,6 +117,10 @@ env
 
 ```
 
+###### 13 main,browser,module的区别
+
+- https://github.com/SunshowerC/blog/issues/8
+
 ## 学习参考链接
 
 - 你所需要的npm知识储备都在这了:<https://juejin.im/post/5d08d3d3f265da1b7e103a4d>
