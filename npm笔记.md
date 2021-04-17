@@ -121,6 +121,29 @@ env
 
 - https://github.com/SunshowerC/blog/issues/8
 
+
+##### 14 npm init的含义
+
+举个例子，在没有显示安装egg的情况情况下，为什么npm init egg能完成egg的下载？
+```sh
+$ mkdir egg-example && cd egg-example
+$ npm init egg
+```
+
+原因：
+
+- npm@6.1.0开始，支持npm init命令
+- 执行npm init egg时，npm首先会补全模块名称：create-xxx,  此处就是create-egg，并执行npx create-egg。
+    - npm init egg等同于 npx create-egg
+- npx 模块执行过程是这样的，只要 npx 后面的模块无法在本地发现，就会下载同名模块，然后再执行对应的命令
+    - npx create-egg等同于 执行 ./node_modules/.bin/create-egg
+
+所以npm init egg能完成egg脚手架的启动。
+
+- [你不知道的 npm init](http://www.ruanyifeng.com/blog/2019/02/npx.html)
+- [npx 使用教程
+](http://www.ruanyifeng.com/blog/2019/02/npx.html)
+
 ## 学习参考链接
 
 - 你所需要的npm知识储备都在这了:<https://juejin.im/post/5d08d3d3f265da1b7e103a4d>
