@@ -66,6 +66,17 @@ ps aux | grep nginx
 nginx -t
 ```
 
+#### 通过ps得到进程的pid，查看进程的工作路径
+```shell
+# 获得进程pid
+ps aux | grep 进程关键词
+# 查看进程目录
+# 方法1：该方法对没有修改进程运行路径的 有效
+pwdx pid ,
+# 方法2：进程对应的软连接 即时 bin 完整路径
+ll /proc/pid
+```
+
 ##### lsof
 
 ```
@@ -205,13 +216,13 @@ shift+g
 ####  linux下查看最消耗CPU、内存的进程
 ```sh
 ### https://blog.csdn.net/wzb56_earl/article/details/51868713
-### 1.CPU占用最多的前10个进程： 
-ps auxw|head -1;ps auxw|sort -rn -k3|head -10 
+### 1.CPU占用最多的前10个进程：
+ps auxw|head -1;ps auxw|sort -rn -k3|head -10
 
-### 2.内存消耗最多的前10个进程 
-ps auxw|head -1;ps auxw|sort -rn -k4|head -10 
+### 2.内存消耗最多的前10个进程
+ps auxw|head -1;ps auxw|sort -rn -k4|head -10
 
-### 3.虚拟内存使用最多的前10个进程 
+### 3.虚拟内存使用最多的前10个进程
 ps auxw|head -1;ps auxw|sort -rn -k5|head -10
 ```
 
