@@ -206,9 +206,11 @@ input[type="password"][value$="6"] { background-image: url("http://www.hacker.co
 
 #### 8. 302跳转劫持问题
 
+    通过hsts解决:https://segmentfault.com/a/1190000022316260
+    
 #### 9. cdn劫持
-https://blog.csdn.net/bigsec/article/details/79458398
-https://www.cnblogs.com/pluslius/archive/2018/11/02/9895047.html
+- https://blog.csdn.net/bigsec/article/details/79458398
+- https://www.cnblogs.com/pluslius/archive/2018/11/02/9895047.html
 
 #### 10. 可执行文件上传漏洞
 
