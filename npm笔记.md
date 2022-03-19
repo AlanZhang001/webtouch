@@ -130,6 +130,11 @@ $ mkdir egg-example && cd egg-example
 $ npm init egg
 ```
 
+##### 15. npm ping
+
+检测一下当前镜像源的延迟
+
+
 原因：
 
 - npm@6.1.0开始，支持npm init命令
