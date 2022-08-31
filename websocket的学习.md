@@ -252,10 +252,8 @@ Sec-WebSocket-Accept: RH4E4orwcBih78+xUKYeQYWgsCQ=
 #### 4.1 适用我们的场景
 1. 在线咨询 
 在线咨询目前使用的是短轮询，不断发送请求询问客服是否有回复
-![](./asserts/consult.jpg)
-2. walle发布系统
+2. 发布系统
 发布系统在发布过程中，更新进度是通过不断的发送请求来获取最新进度
-![](./asserts/walle.png)
 3. 微信小程序/小游戏
 小程序的架构非常简单，这里有两条网络同步，一条是 HTTPS 通路，用于常规请求。对于 WebSocket 请求，会先走 HTTPS 后再切换协议到 WebSocket 的 TCP 连接，从而实现全双工通信。详细见腾讯云[专栏](https://cloud.tencent.com/document/product/448/6405)
 ![](./asserts/wxapp.jpg)
